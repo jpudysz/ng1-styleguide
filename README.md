@@ -314,7 +314,7 @@ angular.module('app.routing', [])
 	   //posiadamy Intellisense dla $stateProvidera
 	});
 ```
-Na tym właśnie polega cała idea TypeScripta - typowanie, klasy, dziedziczenie i darmowe typingsy. Zapraszam do analizy staretera i przykładowej aplikacji.
+Na tym właśnie polega cała idea TypeScripta - typowanie, klasy, dziedziczenie i darmowe typingsy. Budując model aplikacji w osobnych klasach, typując odpowiedzi z serwera, korzystając z generics i typingsów cały flow wszystkich programistów jest o wiele szybszy i odporny na literówki i błędne typowania. Zapraszam do analizy staretera i przykładowej aplikacji, gdzie powyższa teoria została zaprezentowana w praktyce.
 
 # 6. Przykłady
 - **Unikaj jQuery**
