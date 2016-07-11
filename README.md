@@ -93,6 +93,75 @@ Posumowując za pomocą TypeScripta dostajemy mozliwość korzystania z silnego 
 * Void
 
 ### 5.2 Interfaces
+Interfejsy to sposób na deklaracje złożonych typów - innymi słowy interfejs to przepis na naszą strukturę danych (obiekt). Weźmy za przykład interfejs dla modelu danych:
+```javascript
+interface IPerson {
+  name: string;
+  lastName: string;
+  age?: number; //parametr opcjonalny
+  getFullName: Function;
+}
+
+function playWithPerson(person: IPerson): void {
+    //TypeScript zapewnia że person jest typu IPerson i posiada name, lastName oraz funkcję getFullName.
+    //Pole age jest opcjonalne
+    console.log(person.getFullName());
+    
+    if(person.age && person.age > 30) {
+      console.log('You are old dude');
+    }
+}
+```
+Inny przykład to opisanie naszego Angularowego serwisu przez interface:
+```javascript
+interface IPersonServiceActions {
+  getPerson(id: number): IPerson;
+  deletePerson(id: number): IPerson;
+  getPeople(): Array<IPerson>;
+}
+
+class PersonService implements IPersonServiceActions {
+  public getPerson(id: number): IPerson {
+     //$http.get ...
+  }
+  
+  public deletePerson(id: number): IPerson {
+    //$http.delete ...
+  }
+  
+  public getPeople(): Array<IPerson> {
+    //$http.get
+  }
+}
+```
+Jedyną trudnością jest zapisanie implements i podanie interfejsu :)
+
+Ostatnim zagadnieniem jest rozszerzanie interfejsu lub klasy o inne interfejsy:
+```javascript
+interface IPet {
+  name: string;
+  age: number;
+  eat: Function;
+}
+
+interface ICat extends IPet {
+  // ICat rozszerza interfejst IPet
+  moew: Function;
+}
+
+interface IBird extends IPet {
+  fly: Function;
+}
+
+function playWithPets(kitty: ICat, birddy: IBird) {
+	console.log(kitty.name); //zapewnia nam to IPet
+	kitty.moew(); //ICat
+	
+	birddy.eat(); //IPet
+	birddy.fly(); //IBird
+}
+```
+
 ### 5.3 Classes
 ### 5.4 Generics
 ### 5.5 Enums
