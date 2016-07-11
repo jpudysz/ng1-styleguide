@@ -297,6 +297,24 @@ Nasza metoda stała się generyczna - oznacza to że przyjmuje dowolne typy zmie
 
 ### 5.5 Decorators
 ### 5.6 Typings
+Typings to idealnym przykład wkładu społeczności w rozwój języka. Wyobraźmy sobie że podpinamy do naszego projektu ui-router, a następnie konfigurujemy go w naszej aplikacji dodając różne stany itp. Skąd mamy wiedzieć jakie metody posiada service $state albo provider $stateProvider? Nie wiemy, musimy przejść do dokumentacji, tam zobaczyć jakie funkcje są nam udostępniane, a następnie wrócić do kodu i jeszcze sprawdzając 5x dokumentację przepisac daną metodę/ własność. Inną opcją jest tworzenie własnych interface'ów tak aby ułatwić nam życie np. w jednym miejscu stworzyć katalog typings a tam zadeklarować interface IState lub IStateProvider przepisując definicje funkcji 1:1 zgodnie z dokumentacją. A co jeśli powiem wam, że ktoś zrobił to już za was? :)
+
+Lista dostępnych typingsów: https://github.com/DefinitelyTyped/DefinitelyTyped
+
+Sposób instalacji
+```
+npm install typings -g
+typings install angular-ui-router --save --ambient
+```
+
+Następnie w naszym kodzie:
+```javascript
+angular.module('app.routing', [])
+	.config(($stateProvider: ng.ui.IStateProvider) => {
+	   //posiadamy Intellisense dla $stateProvidera
+	});
+```
+Na tym właśnie polega cała idea TypeScripta - typowanie, klasy, dziedziczenie i darmowe typingsy. Zapraszam do analizy staretera i przykładowej aplikacji.
 
 # 6. Przykłady
 - **Unikaj jQuery**
