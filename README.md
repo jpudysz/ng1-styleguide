@@ -28,6 +28,70 @@
 
 # 5. TypeScript
 ### 5.1 Silne typowanie
+Używając TypeScript możemy uniknąć wielu testów sprawdzających i walidujących typy zmiennych oraz samych błędów. Jeżeli zadeklarujemy że zmienna jest typu X to kompilator TypeScript nie pozowoli nam zbudować projektu dopóki wszystkie referencje przypisania do tej zmiennej nie będą typu X.
+```
+let counter: number;
+let greeting: string;
+let isValid: boolean;
+```
+Podczas deklaracji zmiennej możemy również przypisać jej wartość:
+```
+let name: string = 'Greg';
+let arr: number[] = [1,2,3];
+let arr2: Array<string> = ['Hi', 'Hey', 'Hello'];
+```
+Podczas integracji z zewnętrznymi bibliotekami, często nie posiadamy silnego typowania co powoduje że jesteśmy zmuszeni do pisania własnych interfejsów (o tym za chwilę). Z pomocą przychodzi magiczny typ any, który pozwala przypisać dowolny typ do zadeklarowanej tak zmiennej. Pamiętajmy jednak aby go unikać i używać tylko w specjalnych przypadkach (nie po to podpinamy TypeScript aby używać any):
+```
+let myArr: any[] = [81, false, 'go away'];
+```
+Silne typowanie to nie tylko deklaracja zmiennych. Weźmy za przykład funkcje:
+```
+function addNumbers(num1: number, num2: number): number {
+  // nie musimy sprawdzać czy num1 i num2 to liczby bo zapewnia to TypeScript!
+  return num1 + num2;
+}
+```
+Zwróćmy również uwagę, że podajemy jawnie typ zwracanej wartości (po nawiasach funkcji) - number. Pozwali to WebStormowi zapewnić świeny IntelliSense.
+
+Jeśli funkcja nie zwraca żadnej wartości możemy skorzystać z kolejnego typu - void:
+```
+function echo(msg: string): void {
+  console.log(msg);
+}
+```
+
+TypeScript pozwala nam korzystać również z enumów 'out of the box':
+```
+enum Event {DONE, GONE, FAILED};
+let status: Event = Event.FAILED;
+```
+Tak jak w językach typu C#, enumy są numerowane od 0, możemy to jawnie zmienić:
+```
+enum Color {RED = 16, BLUE, GREEN}
+```
+Wyłuskanie wartości tekstowej z enuma:
+```
+let myColor: string = Color[16]; // 'RED'
+```
+
+Jeśli wiemy jakiego typu jest nasza zmienna, możemy ją rzutować tak jak w klasycznych językach programowania:
+```
+let message: any = 12;
+let message2: any = 'Hello world!';
+
+let strLength = (<string>message).length;
+```
+
+Posumowując za pomocą TypeScripta dostajemy mozliwość korzystania z silnego typowania w naszym kodzie JavaScript. Wyróżniamy nastepujące typy:
+* Boolean
+* Number
+* String
+* Array lub type[]
+* Tuple
+* Enum
+* Any
+* Void
+
 ### 5.2 Interfaces
 ### 5.3 Classes
 ### 5.4 Generics
