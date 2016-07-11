@@ -136,7 +136,7 @@ class PersonService implements IPersonServiceActions {
 ```
 Jedyną trudnością jest zapisanie implements i podanie interfejsu :)
 
-Ostatnim zagadnieniem jest rozszerzanie interfejsu lub klasy o inne interfejsy:
+Ostatnim zagadnieniem jest rozszerzanie interfejsu o inne interfejsy:
 ```javascript
 interface IPet {
   name: string;
@@ -163,6 +163,116 @@ function playWithPets(kitty: ICat, birddy: IBird) {
 ```
 
 ### 5.3 Classes
+Klasy zostały stworzone aby ukryć nielubiane prototypowe dziedziczenie. Zostały wprowadzone do języka wraz z ES6, a dzięki TypeScript możemy jeszcze więcej!
+
+Deklaracja klasy:
+```javascript
+class Company {
+
+}
+```
+Każda klasa posiada specjalną metodę - constructor, zostanie ona wywołana tylko raz podczas tworzenia nowego obiektu:
+```javascript
+class Company {
+  public name: string;
+  
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+var pgs = new Company('PGS');
+pgs.name; //PGS
+```
+Powyższy kod możemy uprościć, dzięki specjalnym skrótom TS'a:
+```javascript
+class Company {
+  constructor(public name: string) {
+  }
+}
+```
+Otrzymujemy też możliwość ukrywania zmiennych:
+```javascript
+class Car {
+  constructor(public engine: string, private owner: IPerson) {
+  }
+}
+
+//gdzieś w kodzie, zakładając że car to instancja klasy Car
+car.owner; // błąd - zmienna jest prywatna
+
+```
+Gdy nasza lista zmiennych inicjalizowana w konstruktorze staje się coraz dłuższa możemy skorzystać z interfejsów:
+```javascript
+class Example {
+  constructor(public name: string, public lastName: string, public age: number, public height: number, public width: number){
+  }
+}
+
+//lub
+interface IThing {
+  name: string;
+  lastName: string;
+  age: number;
+  height: number;
+  width: number;
+}
+
+class Example2 {
+  constructor(public thing: IThing){
+  }
+}
+```
+TypeScript wymusza na nas abyśmy nie używali słowa kluczowego function w obrębie klasy:
+```javascript
+class FunctionLess {
+  doSomething(name: number): void {
+  }
+  
+  doSomethingElse(tab: Array<string>): Array<string> {
+    return tab.map(x => x.name = x.name.toUpperCase());
+  }
+}
+```
+TypeScript udostępnia nam również klasy abstrakcyjne, które używamy jako klasy bazowe np. wyobraźmy sobie że tworzymy klasę odpowiedzialna za paginację. Taka klasa może być dziedziczona w dowolnym komponencie, dzięki czemu komponent ten zyskuje całe API potrzebne do jej zaimplementowania.
+```javascript
+abstract class Pagination {
+  public currentPage: number;
+  public totalElements: number;
+  public limit: number;
+  
+  next(): void {
+    this.currentPage++;
+  }
+  
+  setPage(pageNo: number): void {
+    this.currentPage = pageNo;
+  }
+}
+
+class MyAppComponent extends Pagination {
+  constructor() {
+     // jeśli dana klasa dziedziczy po innej, musimy wywołać w konstruktorze
+     // konstruktor klasy bazowej, dzieje się to za pomocą specjalnej metody super()
+     super();
+     this.setPage(10);
+  }
+}
+```
+Możemy również dziedziczyć po 'zwykłych' klasach również to sprowadza się do prostego dziedziczenia prototypowego:
+```javascript
+class A {
+  constructor(public name: string){
+  }
+}
+
+class B extends A {
+  constructor() {
+    super('AName');
+  }
+}
+```
+
 ### 5.4 Generics
 ### 5.5 Enums
 ### 5.6 Decorators
