@@ -234,7 +234,7 @@ class FunctionLess {
   }
 }
 ```
-TypeScript udostępnia nam również klasy abstrakcyjne, które używamy jako klasy bazowe np. wyobraźmy sobie że tworzymy klasę odpowiedzialna za paginację. Taka klasa może być dziedziczona w dowolnym komponencie, dzięki czemu komponent ten zyskuje całe API potrzebne do jej zaimplementowania.
+TypeScript udostępnia nam również klasy abstrakcyjne, które używamy jako klasy bazowe np. wyobraźmy sobie że tworzymy klasę odpowiedzialna za paginację. Taka klasa może być dziedziczona w dowolnym komponencie, dzięki czemu komponent ten zyskuje całe API potrzebne do jej zaimplementowania. 
 ```javascript
 abstract class Pagination {
   public currentPage: number;
@@ -259,6 +259,8 @@ class MyAppComponent extends Pagination {
   }
 }
 ```
+Część z was zapyta czym w takim razie różni się interface od klasy abstract? W najprostszych słowach za pomocą abstract możemy przedstawić przykładową implementację danych metod. W przypadku interfejsów nie jest to możliwe, ponieważ interface to przepis na klasę. Po drugie abstract class stworzy nam dziedziczenie prototypowe, a interface zostanie usunięty podczas kompilacji TypeScripta (nie ma czegoś takiego jak Interface w JavaScripcie).
+
 Możemy również dziedziczyć po 'zwykłych' klasach również to sprowadza się do prostego dziedziczenia prototypowego:
 ```javascript
 class A {
