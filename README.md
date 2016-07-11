@@ -276,9 +276,27 @@ class B extends A {
 ```
 
 ### 5.4 Generics
-### 5.5 Enums
-### 5.6 Decorators
-### 5.7 Typings
+Generics to kolejna rzecz zapożyczona z języków obiektowych. Służy do stworzenia jak najbardziej re-używalnego kodu. Przykład:
+```javascript
+function echo(value: any): any {
+  return value;
+}
+```
+W tym wypadku tworzymy funkcję, która przyjmuje dowolny argument i go zwraca. Jest to trochę oszukany Generic, ale pozwala zrozumieć całą ideę. Do funkcji echo możemy przekazać dowolną wartość, bez względu na jej typ zostanie ona zwrócona. A teraz zobaczmy jak możemy implementować Generics w TypeScript:
+```javascript
+function echo<T>(value: T): T {
+  return value;
+}
+```
+Zasada działania powyższych 2 funkcji jest identyczna. T - jest to placeholder, może być to dowolnie inna litera, w innych językach programowania przyjęło się aby używać litery T.
+```javascript
+let num: number = <number>echo(12);      //12
+let str: string = <string>echo('Hello'); //'Hello'
+```
+Nasza metoda stała się generyczna - oznacza to że przyjmuje dowolne typy zmiennych.
+
+### 5.5 Decorators
+### 5.6 Typings
 
 # 6. Przykłady
 - **Unikaj jQuery**
