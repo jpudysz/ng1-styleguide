@@ -14,6 +14,21 @@
 
 # 4. ES6
 ### 4.1 Const i let
+Pisząc w ES6 powinniśmy całkowicie zrezygnować z `var`. Co więcej powinniśmy w 90% przypadków używać `const` czyli oznaczać zmienne jako niemodyfikowalne. `const` zapewnia że referencja do danej zmiennej nie zostanie zmieniona, a każda próba takiej zmiany spowoduje błąd. Jeśli nasza zmienna jest mutowalna powinniśmy użyć `let`. 
+
+```javascript
+let counter = 0;
+counter++;
+```
+
+```javascript
+const url = `${CONFIG.API}/path/${id}`;
+
+$http.get(url)
+```
+
+Różnica pomiędzy `const`, `let` oraz `var` jest taka, że `const` i `let` są `block-scoped`, a `var` jest `function-scoped` oznacza to, że są widoczne tylko w obrębie najbliższego bloku and nie funkcji. Co więcej w przypadku `let` i `const` nie działą hoisting czyli nie możemy użyć zmiennej przed jej deklaracją.
+
 ### 4.2 Method shorthand
 ### 4.3 Property value shorthand
 ### 4.4 Arrow function
