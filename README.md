@@ -296,6 +296,93 @@ let str: string = <string>echo('Hello'); //'Hello'
 Nasza metoda stała się generyczna - oznacza to że przyjmuje dowolne typy zmiennych.
 
 ### 5.5 Decorators
+Dekoratory to eksperymentalny feature TypeScripta. Pozwala nam w łatwy sposób "dekorować" lub innymi słowy dołączać metandane do naszych klas, funkcji czy też properties. AngularJS 2 wykorzystuje dekoratory do tworzenia Component oraz Service.
+```javascript
+// AngularJS 2
+@Component({
+  selector: 'app',
+  template: '<h3>Hello world!</h3>'
+})
+class MyAppComponent {
+}
+
+//AngularJS 2 Service
+@Injectable()
+export class UserService {
+  getUsers() {
+    //fetch users
+  }
+}
+```
+Oprócz samych klas możemy dokorować również metody:
+```javascript
+class SubjectClass {
+
+   @meta()	
+   doSomething(){
+   }
+}
+```
+
+Ale po co nam tak na prawdę dekoratory? Jak wygląda ich przykładowa implementacja? Weźmy za przykład dwa przypadki, które pozwalają dodać nam 'syntactic sugar' do naszych aplikacji ;)
+
+Wyobraźmy że budujemy kolejną nudną aplikacje w express.js. Za każdym razem tworzymy funkcję, która jest Routerem, do funkcji tej dołączamy różne routes gdzie obsługujemy nasze requesty. Możemy przełamać tę konwencję i wykorzystać dekoratory:
+```javascript
+
+@Controller('/job')
+class JobController {
+
+  @get('/:id')
+  getJobById(id: number): IJob {
+     // call db
+  }
+  
+  @put('/:id')
+  updateJoById(id: number): IJob {
+     // call db
+  }
+}
+```
+
+Czy praca z takimi klasami nie byłaby o wiele łatwiejsza? Przeglądając taką klasę, wiemy dokładnie co robi każda metoda, możemy rónież dekorować każdą ścieżkę np. middlewarami.
+
+Drugi przykład to coś co może zmienić wasze podejście do pisania aplikacji w AngularJS 1. Co by się stało gdybyśmy mogli tworzyć komponenty identycznie jak w AngualrJS 2?
+
+```javascript
+//Przykładowy komponent AngularJS 1
+angular.module('app.components.myApp', [])
+   .component('myAppComponent', {
+       bindings: {
+          magicParam: '='
+       },
+       template: `<h1>Hello!</h1>`,
+       controller: function() {
+       }
+   });
+```
+A teraz przykład z dekoratorem:
+```javascript
+@Component({
+  bindings: {
+     magicParam: '='
+  },
+  template: `<h1>Hello!</h1>`
+})
+class MyAppComponent() {
+}
+```
+
+I sama deklaracja dekoratora:
+```javascript
+export const Component = function(options) : Function {
+   return (controller: Function) => {
+      return options? angular.extend(options, {controller}) : controller;
+   }
+}
+```
+
+Jak widać dekorator to nic strasznego, jest to po prostu funckja, która zwraca funkcję. Funckja może modyfikować prototypy, rozszerzać metody, klasy czyli wszystko to co możemy zrobić w JavaScripcie. W powyższym przykładzie MyAppComponent to nasz controller, natomiast dekorator do dodatkowe properties, które kopiujemy do naszej konfiguracji. Po kompilacji kod będzie identyczny jak ten w klasycznym podejściu z Angular1.
+
 ### 5.6 Typings
 Typings to idealnym przykład wkładu społeczności w rozwój języka. Wyobraźmy sobie że podpinamy do naszego projektu ui-router, a następnie konfigurujemy go w naszej aplikacji dodając różne stany itp. Skąd mamy wiedzieć jakie metody posiada service $state albo provider $stateProvider? Nie wiemy, musimy przejść do dokumentacji, tam zobaczyć jakie funkcje są nam udostępniane, a następnie wrócić do kodu i jeszcze sprawdzając 5x dokumentację przepisac daną metodę/ własność. Inną opcją jest tworzenie własnych interface'ów tak aby ułatwić nam życie np. w jednym miejscu stworzyć katalog typings a tam zadeklarować interface IState lub IStateProvider przepisując definicje funkcji 1:1 zgodnie z dokumentacją. A co jeśli powiem wam, że ktoś zrobił to już za was? :)
 
