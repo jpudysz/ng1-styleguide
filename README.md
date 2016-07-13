@@ -51,7 +51,7 @@ function addNumbers(num1: number, num2: number): number {
   return num1 + num2;
 }
 ```
-Zwróćmy również uwagę, że podajemy jawnie typ zwracanej wartości (po nawiasach funkcji) - number. Pozwali to WebStormowi zapewnić świeny IntelliSense.
+Zwróćmy również uwagę, że podajemy jawnie typ zwracanej wartości (po nawiasach funkcji) - number. Pozwali to WebStormowi zapewnić świetny IntelliSense.
 
 Jeśli funkcja nie zwraca żadnej wartości możemy skorzystać z kolejnego typu - void:
 ```javascript
@@ -60,7 +60,7 @@ function echo(msg: string): void {
 }
 ```
 
-TypeScript pozwala nam korzystać również z enumów 'out of the box':
+TypeScript pozwala nam korzystać również z enumów:
 ```javascript
 enum Event {DONE, GONE, FAILED};
 let status: Event = Event.FAILED;
@@ -161,7 +161,7 @@ function playWithPets(kitty: ICat, birddy: IBird) {
 	birddy.fly(); //IBird
 }
 ```
-
+Pamiętajmy że interface to nie dziedziczenie prototypowe, co więcej interface jest usuwany na etapie kompilacji do *.js. Interface to coś abstrakcyjnego, pozwalającemu nam tworzyć silne typowanie podczas procesu developmentu i usuwane podczas etapu kompilacji.
 ### 5.3 Classes
 Klasy zostały stworzone aby ukryć nielubiane prototypowe dziedziczenie. Zostały wprowadzone do języka wraz z ES6, a dzięki TypeScript możemy jeszcze więcej!
 
