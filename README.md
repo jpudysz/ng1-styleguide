@@ -53,6 +53,31 @@ const config = {
 ```
 
 ### 4.3 Property value shorthand
+Jest to jeden z moich ulubionych 'ficzerów' ES6, pozwala nam pominąć powtarzający się kod. Skoczmy odrazu do praktycznego przykładu:
+```javascript
+  .sevice('AuthService', function($http) {
+      const service = {
+         login: login,
+         logout: logout,
+         getMe: getMe
+      };
+      
+      function login() {}
+      function logout() {}
+      function getMe() {}
+      
+      return service;
+  });
+```
+Z ES6 możemy usunąć zbędny kod w obiekcie service:
+```javascript
+const service = {
+  login,
+  logout,
+  getMe
+};
+```
+
 ### 4.4 Arrow function
 ### 4.5 Spread operator
 ### 4.6 Default parameters
