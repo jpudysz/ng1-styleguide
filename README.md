@@ -152,6 +152,23 @@ const copyItems = [...items];
 ```
 
 ### 4.6 Default parameters
+Default parameters czyli domyślne wartości, które zmienna otrzyma jeśli nie przekażemy do funkcji żadnego innego argumentu:
+```javascript
+//ES5
+function doSomething(param1, param2) {
+   param1 = param1 || 1;
+   param2 = param2 || 'default value';
+}
+
+```
+
+```javascript
+//ES6
+function doSomething(param1 = 1, param2 = 'default value') {
+
+}
+```
+
 ### 4.7 String interpolation
 ### 4.8 Destructuring
 ### 4.9 Import/Export/export default
