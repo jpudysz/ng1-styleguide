@@ -79,6 +79,30 @@ const service = {
 ```
 
 ### 4.4 Arrow function
+
+Arrow function jest to skrócona wersja zapisu anonimowej funkcji, często upraszcza nasz kod w takim stopniu, że możemy zapisać jej logikę w jednej linjce kodu. Przy korzystaniu z arrow function należy pamiętać że `this` będzie wskazywał na kontekst w którym funkcja została wywołana. `call` , `apply` i `bind` nie mogą zmienić `this` w arrow function, ponieważ arrow function nie tworzy własnego this. Jeśli potrzebujemy zmienić `this` musimy skorzystać ze zwykłej funkcji.
+
+Przykłady:
+```javascript
+$http.get('url/to/api')
+   .then((response) => response.data); //zwraca response.data
+```
+
+```javascript
+const arr = [1,2,3,4,5];
+arr.map(number => number *2);
+```
+
+```javascript
+  Builder.build(() => {
+     console.log('Gdy nie mamy parametrów, musimy użyć {}');
+  });
+```
+
+```javascript
+  const sum = arr.reduce((sum, number) => sum + number, 0)
+```
+
 ### 4.5 Spread operator
 ### 4.6 Default parameters
 ### 4.7 String interpolation
