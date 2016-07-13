@@ -103,7 +103,54 @@ arr.map(number => number *2);
   const sum = arr.reduce((sum, number) => sum + number, 0)
 ```
 
-### 4.5 Spread operator
+### 4.5 Rest/Spread operator
+`Rest` i `spread` operators wyglądają identycznie, ale używane są w innych przypadkach. Operator ten zapisujemy jako `...`
+`rest` operator używany jest w celu zastepienia `arguments` czyli tablicopodobnej struktury, która przechowuje wszystkie parametry z jakimi została wywołana funkcja.
+
+```javascript
+function joinArr(){
+    if(!arguments) {
+		return; 
+    }
+	
+    return Array.prototype.slice.call(arguments).join(' ');
+}
+
+joinArr('a', 'b', 'c', 'd', 'e', 'f'); // a b c d e f
+```
+ES6 rest operator:
+```javascript
+function joinArr(...words) {
+   return words.join(' ');
+}
+
+joinArr('a', 'b', 'c', 'd', 'e', 'f'); // a b c d e f
+```
+
+`Rest` operator może również przechwycić tylko niektóre argumenty funkcji:
+```javascript
+function restMe(param1, param2, ...params){
+  //param1 = 'A'
+  //param2 = 'B' 
+  //params = ['C', 'D', 'E', 'F'];
+}
+
+restMe('A','B', 'C', 'D', 'E', 'F');
+```
+
+`Spread` operator używamy na wszystkim co jest `iterable`. Najłatwiej zrozumieć go jako 'rozpakowanie' tablicy na elementy - podobnie działają streamy w RxJS. 
+```javascript
+console.log([1,2,3]); //[1,2,3]
+console.log(...[1,2,3]) //"rozpakowanie" => 1 2 3
+```
+
+`Spread` operator znajduje również zastosowaie w kopiowaniu tablic:
+```javascript
+const items = [1,2,3,3,4,5,6,7];
+// klasyczne podejście: pętla for z .push() lub .slice()
+const copyItems = [...items];
+```
+
 ### 4.6 Default parameters
 ### 4.7 String interpolation
 ### 4.8 Destructuring
