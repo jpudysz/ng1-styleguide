@@ -43,7 +43,7 @@ Różnica pomiędzy `const`, `let` oraz `var` jest taka, że `const` i `let` są
 
 # 5. TypeScript
 ### 5.1 Silne typowanie
-Używając TypeScript możemy uniknąć wielu testów sprawdzających i walidujących typy zmiennych oraz samych błędów. Jeżeli zadeklarujemy że zmienna jest typu X to kompilator TypeScript nie pozowoli nam zbudować projektu dopóki wszystkie referencje przypisania do tej zmiennej nie będą typu X.
+Używając TypeScript możemy uniknąć wielu testów sprawdzających i walidujących typy zmiennych oraz samych błędów. Jeżeli zadeklarujemy że zmienna jest typu `X` to kompilator TypeScript nie pozowoli nam zbudować projektu dopóki wszystkie referencje przypisania do tej zmiennej nie będą typu `X`.
 ```javascript
 let counter: number;
 let greeting: string;
@@ -55,7 +55,7 @@ let name: string = 'Greg';
 let arr: number[] = [1,2,3];
 let arr2: Array<string> = ['Hi', 'Hey', 'Hello'];
 ```
-Podczas integracji z zewnętrznymi bibliotekami, często nie posiadamy silnego typowania co powoduje że jesteśmy zmuszeni do pisania własnych interfejsów (o tym za chwilę). Z pomocą przychodzi magiczny typ any, który pozwala przypisać dowolny typ do zadeklarowanej tak zmiennej. Pamiętajmy jednak aby go unikać i używać tylko w specjalnych przypadkach (nie po to podpinamy TypeScript aby używać any):
+Podczas integracji z zewnętrznymi bibliotekami, często nie posiadamy silnego typowania co powoduje że jesteśmy zmuszeni do pisania własnych interfejsów (o tym za chwilę). Z pomocą przychodzi magiczny typ `any`, który pozwala przypisać dowolny typ do zadeklarowanej tak zmiennej. Pamiętajmy jednak aby go unikać i używać tylko w specjalnych przypadkach (nie po to podpinamy TypeScript aby używać `any`):
 ```javascript
 let myArr: any[] = [81, false, 'go away'];
 ```
@@ -66,9 +66,9 @@ function addNumbers(num1: number, num2: number): number {
   return num1 + num2;
 }
 ```
-Zwróćmy również uwagę, że podajemy jawnie typ zwracanej wartości (po nawiasach funkcji) - number. Pozwali to WebStormowi zapewnić świetny IntelliSense.
+Zwróćmy również uwagę, że podajemy jawnie typ zwracanej wartości (po nawiasach funkcji) - `number`. Pozwali to WebStormowi zapewnić świetny IntelliSense.
 
-Jeśli funkcja nie zwraca żadnej wartości możemy skorzystać z kolejnego typu - void:
+Jeśli funkcja nie zwraca żadnej wartości możemy skorzystać z kolejnego typu - `void`:
 ```javascript
 function echo(msg: string): void {
   console.log(msg);
@@ -98,14 +98,14 @@ let strLength = (<string>message).length;
 ```
 
 Posumowując za pomocą TypeScripta dostajemy mozliwość korzystania z silnego typowania w naszym kodzie JavaScript. Wyróżniamy nastepujące typy:
-* Boolean
-* Number
-* String
-* Array lub type[]
-* Tuple
-* Enum
-* Any
-* Void
+* `Boolean`
+* `Number`
+* `String`
+* `Array` lub `type[]`
+* `Tuple`
+* `Enum`
+* `Any`
+* `Void`
 
 ### 5.2 Interfaces
 Interfejsy to sposób na deklaracje złożonych typów - innymi słowy interfejs to przepis na naszą strukturę danych (obiekt). Weźmy za przykład interfejs dla modelu danych:
@@ -149,7 +149,6 @@ class PersonService implements IPersonServiceActions {
   }
 }
 ```
-Jedyną trudnością jest zapisanie implements i podanie interfejsu :)
 
 Ostatnim zagadnieniem jest rozszerzanie interfejsu o inne interfejsy:
 ```javascript
@@ -176,7 +175,7 @@ function playWithPets(kitty: ICat, birddy: IBird) {
 	birddy.fly(); //IBird
 }
 ```
-Pamiętajmy że interface to nie dziedziczenie prototypowe, co więcej interface jest usuwany na etapie kompilacji do *.js. Interface to coś abstrakcyjnego, pozwalającemu nam tworzyć silne typowanie podczas procesu developmentu i usuwane podczas etapu kompilacji.
+Pamiętajmy że interface to nie dziedziczenie prototypowe, co więcej interface jest usuwany na etapie kompilacji do `*.js`. Interface to coś abstrakcyjnego, pozwalającemu nam tworzyć silne typowanie podczas procesu developmentu i usuwane podczas etapu kompilacji.
 ### 5.3 Classes
 Klasy zostały stworzone aby ukryć nielubiane prototypowe dziedziczenie. Zostały wprowadzone do języka wraz z ES6, a dzięki TypeScript możemy jeszcze więcej!
 
@@ -186,7 +185,7 @@ class Company {
 
 }
 ```
-Każda klasa posiada specjalną metodę - constructor, zostanie ona wywołana tylko raz podczas tworzenia nowego obiektu:
+Każda klasa posiada specjalną metodę - `constructor`, zostanie ona wywołana tylko raz podczas tworzenia nowego obiektu:
 ```javascript
 class Company {
   public name: string;
@@ -238,7 +237,7 @@ class Example2 {
   }
 }
 ```
-TypeScript wymusza na nas abyśmy nie używali słowa kluczowego function w obrębie klasy:
+TypeScript wymusza na nas abyśmy nie używali słowa kluczowego `function` w obrębie klasy:
 ```javascript
 class FunctionLess {
   doSomething(name: number): void {
@@ -274,7 +273,7 @@ class MyAppComponent extends Pagination {
   }
 }
 ```
-Część z was zapyta czym w takim razie różni się interface od klasy abstract? W najprostszych słowach za pomocą abstract możemy przedstawić przykładową implementację danych metod. W przypadku interfejsów nie jest to możliwe, ponieważ interface to przepis na klasę. Po drugie abstract class stworzy nam dziedziczenie prototypowe, a interface zostanie usunięty podczas kompilacji TypeScripta (nie ma czegoś takiego jak Interface w JavaScripcie).
+Część z was zapyta czym w takim razie różni się `interface` od klasy `abstract`? W najprostszych słowach za pomocą `abstract` możemy przedstawić przykładową implementację danych metod. W przypadku interfejsów nie jest to możliwe, ponieważ `interface` to przepis na klasę. Po drugie `abstract class` stworzy nam dziedziczenie prototypowe, a `interface` zostanie usunięty podczas kompilacji TypeScripta (nie ma czegoś takiego jak `interface` w JavaScripcie).
 
 Możemy również dziedziczyć po 'zwykłych' klasach również to sprowadza się do prostego dziedziczenia prototypowego:
 ```javascript
@@ -291,19 +290,19 @@ class B extends A {
 ```
 
 ### 5.4 Generics
-Generics to kolejna rzecz zapożyczona z języków obiektowych. Służy do stworzenia jak najbardziej re-używalnego kodu. Przykład:
+`Generics` to kolejna rzecz zapożyczona z języków obiektowych. Służy do stworzenia jak najbardziej re-używalnego kodu. Przykład:
 ```javascript
 function echo(value: any): any {
   return value;
 }
 ```
-W tym wypadku tworzymy funkcję, która przyjmuje dowolny argument i go zwraca. Jest to trochę oszukany Generic, ale pozwala zrozumieć całą ideę. Do funkcji echo możemy przekazać dowolną wartość, bez względu na jej typ zostanie ona zwrócona. A teraz zobaczmy jak możemy implementować Generics w TypeScript:
+W tym wypadku tworzymy funkcję, która przyjmuje dowolny argument i go zwraca. Jest to trochę oszukany `Generic`, ale pozwala zrozumieć całą ideę. Do funkcji `echo` możemy przekazać dowolną wartość, bez względu na jej typ zostanie ona zwrócona. A teraz zobaczmy jak możemy implementować `Generics` w TypeScript:
 ```javascript
 function echo<T>(value: T): T {
   return value;
 }
 ```
-Zasada działania powyższych 2 funkcji jest identyczna. T - jest to placeholder, może być to dowolnie inna litera, w innych językach programowania przyjęło się aby używać litery T.
+Zasada działania powyższych 2 funkcji jest identyczna. `T` - jest to placeholder, może być to dowolnie inna litera, w innych językach programowania przyjęło się aby używać litery `T`.
 ```javascript
 let num: number = <number>echo(12);      //12
 let str: string = <string>echo('Hello'); //'Hello'
@@ -311,7 +310,7 @@ let str: string = <string>echo('Hello'); //'Hello'
 Nasza metoda stała się generyczna - oznacza to że przyjmuje dowolne typy zmiennych.
 
 ### 5.5 Decorators
-Dekoratory to eksperymentalny feature TypeScripta. Pozwala nam w łatwy sposób "dekorować" lub innymi słowy dołączać metandane do naszych klas, funkcji czy też properties. AngularJS 2 wykorzystuje dekoratory do tworzenia Component oraz Service.
+Dekoratory to eksperymentalny feature TypeScripta. Pozwala nam w łatwy sposób "dekorować" lub innymi słowy dołączać metandane do naszych klas, funkcji czy też properties. AngularJS 2 wykorzystuje dekoratory do tworzenia `Component` oraz `Service`.
 ```javascript
 // AngularJS 2
 @Component({
@@ -339,9 +338,9 @@ class SubjectClass {
 }
 ```
 
-Ale po co nam tak na prawdę dekoratory? Jak wygląda ich przykładowa implementacja? Weźmy za przykład dwa przypadki, które pozwalają dodać nam 'syntactic sugar' do naszych aplikacji ;)
+Ale po co nam tak na prawdę dekoratory? Jak wygląda ich przykładowa implementacja?
 
-Wyobraźmy że budujemy kolejną nudną aplikacje w express.js. Za każdym razem tworzymy funkcję, która jest Routerem, do funkcji tej dołączamy różne routes gdzie obsługujemy nasze requesty. Możemy przełamać tę konwencję i wykorzystać dekoratory:
+Wyobraźmy że budujemy kolejną nudną aplikacje w `express.js`. Za każdym razem tworzymy funkcję, która jest Routerem, do funkcji tej dołączamy różne routes gdzie obsługujemy nasze requesty. Możemy przełamać tę konwencję i wykorzystać dekoratory:
 ```javascript
 
 @Controller('/job')
@@ -396,11 +395,12 @@ export const Component = function(options) : Function {
 }
 ```
 
-Jak widać dekorator to nic strasznego, jest to po prostu funckja, która zwraca funkcję. Funckja może modyfikować prototypy, rozszerzać metody, klasy czyli wszystko to co możemy zrobić w JavaScripcie. W powyższym przykładzie MyAppComponent to nasz controller, natomiast dekorator do dodatkowe properties, które kopiujemy do naszej konfiguracji. Po kompilacji kod będzie identyczny jak ten w klasycznym podejściu z Angular1.
+Jak widać dekorator to nic strasznego, jest to po prostu funckja, która zwraca funkcję. Funckja może modyfikować prototypy, rozszerzać metody, klasy czyli wszystko to co możemy zrobić w JavaScripcie. W powyższym przykładzie `MyAppComponent` to nasz `controller`, natomiast dekorator do dodatkowe properties, które kopiujemy do naszej konfiguracji. Po kompilacji kod będzie identyczny jak ten w klasycznym podejściu z Angular1.
 
 ### 5.6 Typings
-Typings to idealnym przykład wkładu społeczności w rozwój języka. Wyobraźmy sobie że podpinamy do naszego projektu ui-router, a następnie konfigurujemy go w naszej aplikacji dodając różne stany itp. Skąd mamy wiedzieć jakie metody posiada service $state albo provider $stateProvider? Nie wiemy, musimy przejść do dokumentacji, tam zobaczyć jakie funkcje są nam udostępniane, a następnie wrócić do kodu i jeszcze sprawdzając 5x dokumentację przepisac daną metodę/ własność. Inną opcją jest tworzenie własnych interface'ów tak aby ułatwić nam życie np. w jednym miejscu stworzyć katalog typings a tam zadeklarować interface IState lub IStateProvider przepisując definicje funkcji 1:1 zgodnie z dokumentacją. A co jeśli powiem wam, że ktoś zrobił to już za was? :)
+Typings to idealnym przykład wkładu społeczności w rozwój języka. Wyobraźmy sobie że podpinamy do naszego projektu `ui-router`, a następnie konfigurujemy go w naszej aplikacji dodając różne stany itp. Skąd mamy wiedzieć jakie metody posiada service `$state` albo provider `$stateProvider`? Nie wiemy, musimy przejść do dokumentacji, tam zobaczyć jakie funkcje są nam udostępniane, a następnie wrócić do kodu i jeszcze sprawdzając 5x dokumentację przepisac daną metodę/własność. Inną opcją jest tworzenie własnych interface'ów tak aby ułatwić nam życie np. w jednym miejscu stworzyć katalog `typings` a tam zadeklarować `interface` `IState` lub `IStateProvider` przepisując definicje funkcji 1:1 zgodnie z dokumentacją. 
 
+A co jeśli powiem wam, że ktoś zrobił to już za was? :)
 Lista dostępnych typingsów: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 Sposób instalacji
