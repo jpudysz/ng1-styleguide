@@ -170,6 +170,29 @@ function doSomething(param1 = 1, param2 = 'default value') {
 ```
 
 ### 4.7 String interpolation
+String interpolation to świetne udogodnienie pozwalające nam pisać m.in multiline stringi lub zrezygnować z concatenacji stringów aby dołączyć do nich jakieś zmienne.
+
+```javascript
+//ES5
+var url = CONFIG.API + '/users/' + user.id;
+
+var template = '<h1>Hello World<h1>' +
+                '<span>Placeholder</span>' +
+                '<h2>Next line</h2>';
+```
+
+```javascript
+//ES6
+const url = `${CONFIG.API}/users/${user.id}`;
+
+const template = `
+   <h1>Hello World</h1>
+   <span>Placeholder</span>
+   <h2>Next line</h2>
+`;
+```
+Aby użyć interpolacji należy użyć backtick (klawisz koło "1" na klawiaturze) i opcjonalnie ${} aby użyć zmiennej.
+
 ### 4.8 Destructuring
 ### 4.9 Import/Export/export default
 ### 4.10 Avoid wildcard imports
