@@ -257,10 +257,6 @@ function magicFunction() {
 
 export default magicFunction;
 ```
-
-A teraz najważniejsze: pisząc w ES5 wszystko co nie było owrapowane w `IIFE` rejestrowało przypadkowo lub celowo różne rzeczy w `window`, dlatego w każdym pliku używaliśmy `IIFE` a w nim nasz kod angularowy.
-Wraz z ES6 wszystko się zmienia, musimy zapomnieć o tamtym podejściu, ponieważ każdy plik jest modułem - uzyskujemy enkapsulacje jak z `IIFE` out of the box oraz `"use strict"` jest włączony automatycznie. Reasumując nie musimy już bać się o dołączanie rzeczy to `global object`, dlatego świadomie rezygnujemy z `IIFE` i `"use strict"`.
-
 ```javascript
 //utils.js
 import magic from './magic';
@@ -270,6 +266,8 @@ function moreMagic() {
 }
 
 ```
+A teraz najważniejsze: pisząc w ES5 wszystko co nie było owrapowane w `IIFE` rejestrowało przypadkowo lub celowo różne rzeczy w `window`, dlatego w każdym pliku używaliśmy `IIFE` a w nim nasz kod angularowy.
+Wraz z ES6 wszystko się zmienia, musimy zapomnieć o tamtym podejściu, ponieważ każdy plik jest modułem - uzyskujemy enkapsulacje jak z `IIFE` out of the box oraz `"use strict"` jest włączony automatycznie. Reasumując nie musimy już bać się o dołączanie rzeczy to `global object`, dlatego świadomie rezygnujemy z `IIFE` i `"use strict"`.
 
 ### 4.10 Class
 ### 4.11 Class inheritance
