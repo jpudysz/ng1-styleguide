@@ -267,10 +267,77 @@ function moreMagic() {
 
 ```
 A teraz najważniejsze: pisząc w ES5 wszystko co nie było owrapowane w `IIFE` rejestrowało przypadkowo lub celowo różne rzeczy w `window`, dlatego w każdym pliku używaliśmy `IIFE` a w nim nasz kod angularowy.
-Wraz z ES6 wszystko się zmienia, musimy zapomnieć o tamtym podejściu, ponieważ każdy plik jest modułem - uzyskujemy enkapsulacje jak z `IIFE` out of the box oraz `"use strict"` jest włączony automatycznie. Reasumując nie musimy już bać się o dołączanie rzeczy to `global object`, dlatego świadomie rezygnujemy z `IIFE` i `"use strict"`.
+Wraz z ES6 wszystko się zmienia, musimy zapomnieć o tamtym podejściu, ponieważ każdy plik jest modułem - uzyskujemy enkapsulacje jak z `IIFE` oraz `"use strict"` jest włączony automatycznie. Reasumując nie musimy już bać się o dołączanie rzeczy do `global object`, dlatego świadomie rezygnujemy z `IIFE` i `"use strict"`.
 
 ### 4.10 Class
+Klasy w ES6 to tylko ukrycie prototypowego dziedziczenia. JavaScript nie posiada typowego dziedziczenia obiektowego i `class` wraz z ES6 nic w tym temacie nie zmienia. `Class` posiada specjalną metodę `constructor` która zostanie odpalona tylko raz podczas tworzenia nowego obiektu. Konstruktor to miejsce, w którym najczęściej inicjalizujemy properties danego obiektu lub przeprowadzamy `DI` w AngularJS1 i AngularJS2. 
+
+```javascript
+class MyFancyClass {
+  constructor(url){
+     this.url = url;
+  }
+}
+```
+
+Kod zawarty w klasie jest domyslnie w `"strict mode"`. Klasa podobnie jak `let` i `const` jest odporna na hoisting.
+Metody w klasie pomijają słowo kluczowe `function`:
+
+```javascript
+class User {
+  constructor(user){
+    this.user = user;
+  },
+
+  getMe() {
+     return this.user;
+  }
+}
+```
+
+Podobnie jak w językach obiektowych klasa może posiadać metody satyczne. Oznacza to, że dostęp do takiej metody odbywa się bez konieczności stworzenia instancji takiej klasy:
+
+```javascript
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    },
+
+    static distance(a, b) {
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+
+        return Math.sqrt(dx*dx + dy*dy);
+    }
+}
+
+Point.distance(2,5); //OK!
+const p = new Point(3,4);
+p.distance(3,4); //niedostępne
+```
+Jeżeli stworzymy instancję klasy, która posiada statyczne metody automatycznie tracimy do nich dostęp. 
+
 ### 4.11 Class inheritance
+Dziedziczenie w ES6 jest zdecydowanie łatwiejsze od klasycznego dziedziczenia prototypowego. Nie musimy myśleć o prototypach, konstruktorach itd. Aby stworzyć dziedziczenie dwóch klas należy użyć słowa kluczowego extends:
+```javascript
+class Animal {
+  constructor(name){
+    this.name = name;
+  }
+}
+
+class Kitty extends Animal {
+   constructor(name) {
+      super(name);
+   },
+   
+   moew() {
+     alert(`Moew! ${this.name}`);
+   }
+}
+```
+Jeśli dana klasa dziedziczy po innej, musimy wywołać w konstruktorze konstruktor klasy bazowej, dzieje się to za pomocą specjalnej metody `super()`. Jeśli konstruktor klasy bazowej przyjmuje parametry, możemy je przekazać właśnie przez funkcję `super()`.
 
 # 5. TypeScript
 ### 5.1 Silne typowanie
@@ -497,8 +564,6 @@ abstract class Pagination {
 
 class MyAppComponent extends Pagination {
   constructor() {
-     // jeśli dana klasa dziedziczy po innej, musimy wywołać w konstruktorze
-     // konstruktor klasy bazowej, dzieje się to za pomocą specjalnej metody super()
      super();
      this.setPage(10);
   }
