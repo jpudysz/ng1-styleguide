@@ -268,9 +268,8 @@ function moreMagic() {
 
 ```
 
-### 4.10 Avoid wildcard imports
-### 4.11 Class
-### 4.12 Class inheritance
+### 4.10 Class
+### 4.11 Class inheritance
 
 # 5. TypeScript
 ### 5.1 Silne typowanie
@@ -683,7 +682,8 @@ Na tym właśnie polega cała idea TypeScripta - typowanie, klasy, dziedziczenie
 - **Statefull/Stateless components**
 - **Performance tricks**
 - **Unikaj zahardcodowanych nazw modułów**
-- 
+- **Avoid wildcard imports**
+
 # 7. Starter
 ### 7.1 Struktura plików
 ### 7.2 Opis
