@@ -194,6 +194,25 @@ const template = `
 Aby użyć interpolacji należy użyć backtick (klawisz koło "1" na klawiaturze) i opcjonalnie ${} aby użyć zmiennej.
 
 ### 4.8 Destructuring
+Destructuring to kolejny feature pozwalający usunąć powtarzający się kod. Przykład prezentuje skrót, dzięki któremu możemy stwrorzyć zmienne o tych samych nazwach jak te, które posiada obiekt:
+
+```javascript
+//ES5
+function parseModel(model){
+   var height = model.height;
+   var width = model.width;
+   
+  //...
+}
+```
+
+```javascript
+//ES6
+function parseModel(model){
+   const {height, width} = model;
+}
+```
+
 ### 4.9 Import/Export/export default
 ### 4.10 Avoid wildcard imports
 ### 4.11 Class
