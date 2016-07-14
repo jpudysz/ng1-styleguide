@@ -30,7 +30,7 @@ $http.get(url)
 Różnica pomiędzy `const`, `let` oraz `var` jest taka, że `const` i `let` są `block-scoped`, a `var` jest `function-scoped` oznacza to, że są widoczne tylko w obrębie najbliższego bloku and nie funkcji. Co więcej w przypadku `let` i `const` nie działą hoisting czyli nie możemy użyć zmiennej przed jej deklaracją.
 
 ### 4.2 Method shorthand
-Korzystając z ES6 możemy pominąć słowo kluczowege `function` w deklaracjach obiektów czy też samcyh klasach:
+Korzystając z ES6 możemy pominąć słowo kluczowege `function` w deklaracjach obiektów czy też samych klasach:
 ```javascript
 class Person {
    addValues(num1, num2) {
