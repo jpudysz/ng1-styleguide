@@ -1,5 +1,9 @@
 # 1. Wstęp
+Niniejszy styleguide zawiera bogaty wstęp teoretyczny potrzebny do zrozumienia działania startera i przykładowej aplikacji napisanych w modułowym podejściu za pomocą AngularJS 1.5.7 , webpack i TypeScript. 
 
+Rozdział 2 opisuje breaking changes, które zaprezentował AngularJS od wersji 1.5. Nastepny rozdział to krótkie wprowadzenie do webpacka. Zaznaczam tutaj, że prawdopodobnie będziemy posiadać jedną konfigurację dzieloną pomiędzy projektami i zazwyczaj sprowadzi się do kopiowania, dlatego pamiętajcie, że nie musicie znać całego API webpacka aby czuć się w nim swobodnie. Konfiguracja jest na tyle elastyczna, że na pewno każdy da radę skonfigurować ją pod swój projekt, a na 99% przyjdziecie na gotowe ;). 
+
+Dalej w 4 i 5 rozdziale znajduje się spis wszystkich potrzebnych wam informacji dotyczących ES6 i TypeScripta. Następnie rozdział 6 to przejście do samego styleguida czyli spisu best-practices używanych podczas pisania aplikacji. Na koniec prezentacja działającej aplikacji, którą polecam odpalić w WebStormie - otrzymujemy możliwość m.in skakania po referencjach i podpowiedzi Intellisense.
 # 2. Zmiany w AngularJS 1.5+
 ### 2.1 Components
 ### 2.2 One-way databinding
