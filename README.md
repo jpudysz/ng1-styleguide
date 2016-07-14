@@ -214,6 +214,60 @@ function parseModel(model){
 ```
 
 ### 4.9 Import/Export/export default
+Moduły z ES6 to duży przełom jeśli chodzi o sposób pisania kodu po stronie frontendu. Jeżeli ktoś z was pisał w node.js to wie, że każdy plik jest osobnym modułem dzięki czemu to my decydujemy co zostanie wyeksportowane (pokazane światu na zewnątrz) a co zaimportowane (użyte w danym module). Musimy pamiętać że pełna modułowość nie będzie nigdy dostępna w przeglądarce ze względu na sposób działania skryptów gdzie kazdy plik jest widoczny. Przed specyfikacją ES6 modułowość mogła zostać osiągnięta za pomocą zewnętrznych bibliotek np. require.js.
+
+Każdy plik ma swój moduł. Moduł może importować rzeczy wyeksportowane z innych modułów:
+```javascript
+//magic.js
+function magicFunction() {
+  console.log('Magic function');
+}
+
+export {magicFunction} // 4.3 Property value shorthand
+```
+
+```javascript
+//utils.js
+import {magicFunction} from './magic';
+
+function moreMagic() {
+  magicFunction();
+}
+
+```
+Należy pamiętać, że tak jak i w świecie node.js `'./'` oznacza bieżący katalog a `'../'` katalog wyżej.
+Nie ma obowiązku aby dany moduł coś importował - staje się wtedy modułem niezależnym.
+Jeżeli moduł nic nie eksportuje, a zostanie dołączony do builda, to zostanie uruchomiony ale żaden inny moduł nie będzie mógł
+skorzystać z jego metod. Jest to bardzo przydatne np. jesli chcemy zarejestrować coś w angularze.
+
+Ostatnią rzeczą wartą wspomnienia jest `export default`. Moduł może eksportować wiele rzeczy np.:
+```javascript
+function a () {}
+function b() {}
+function c() {}
+
+export {a,b,c}
+```
+ale może eksportować tylko jedną 'domyślną' rzecz. Jeżeli coś zostało `export default` to podczas importu możemy pominąć `{}` oraz przypisać tej zmiennej swoją nazwę:
+```javascript
+//magic.js
+function magicFunction() {
+  console.log('Magic function');
+}
+
+export default magicFunction;
+```
+
+```javascript
+//utils.js
+import magic from './magic';
+
+function moreMagic() {
+  magic();
+}
+
+```
+
 ### 4.10 Avoid wildcard imports
 ### 4.11 Class
 ### 4.12 Class inheritance
@@ -535,7 +589,7 @@ class JobController {
 }
 ```
 
-Czy praca z takimi klasami nie byłaby o wiele łatwiejsza? Przeglądając taką klasę, wiemy dokładnie co robi każda metoda, możemy rónież dekorować każdą ścieżkę np. middlewarami.
+Czy praca z takimi klasami nie byłaby o wiele łatwiejsza? Przeglądając taką klasę, wiemy dokładnie co robi każda metoda, możemy również dekorować każdą ścieżkę np. middlewarami.
 
 Drugi przykład to coś co może zmienić wasze podejście do pisania aplikacji w AngularJS 1. Co by się stało gdybyśmy mogli tworzyć komponenty identycznie jak w AngualrJS 2?
 
