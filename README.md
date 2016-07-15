@@ -150,7 +150,20 @@ Jeśli tworzymy komunikacje pomiędzy dwoma dyrektywami należy pamiętać, że 
 });
 ```
 
+**`$postLink`** - zostanie wywołany gdy wszystkie dzieci przeszły `compile phase` i `linking phase` oraz nasz template jest gotowy na manipulacje DOM.
 
+```javascript
+.component('myComponent', {
+  bindings: {
+    prop: '='
+  },
+  controller: function() {
+    this.$postLink = function() {
+      //jeżeli potrzebujemy mieć dostęp do element, attrs musimy skorzystać z .directive
+    }
+  }
+});
+```
 
 ### 2.5 Multi-slot transclusion
 
