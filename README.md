@@ -4,6 +4,7 @@ Niniejszy styleguide zawiera bogaty wstęp teoretyczny potrzebny do zrozumienia 
 Rozdział 2 opisuje breaking changes, które zaprezentował AngularJS od wersji 1.5. Nastepny rozdział to krótkie wprowadzenie do webpacka. Zaznaczam tutaj, że prawdopodobnie będziemy posiadać jedną konfigurację dzieloną pomiędzy projektami i zazwyczaj sprowadzi się do kopiowania, dlatego pamiętajcie, że nie musicie znać całego API webpacka aby czuć się w nim swobodnie. Konfiguracja jest na tyle elastyczna, że na pewno każdy da radę skonfigurować ją pod swój projekt, a na 99% przyjdziecie na gotowe ;). 
 
 Dalej w 4 i 5 rozdziale znajduje się spis wszystkich potrzebnych wam informacji dotyczących ES6 i TypeScripta. Następnie rozdział 6 to przejście do samego styleguida czyli spisu best-practices używanych podczas pisania aplikacji. Na koniec prezentacja działającej aplikacji, którą polecam odpalić w WebStormie - otrzymujemy możliwość m.in skakania po referencjach i podpowiedzi Intellisense.
+
 # 2. Zmiany w AngularJS 1.5+
 ### 2.1 Components
 ### 2.2 One-way databinding
@@ -767,7 +768,6 @@ Celem tego guideline'a jest zaznajomienie jak największej ilości developerów 
 Planuję rozwijać i updatować ten guideline do Q4 2016 kiedy oficjalnie przejdziemy na AngularJS 2. AngularJS w wersji pierwszej jeszcze długo nie umrze i już za niedługo możemy spodziewać się nowej wersji 1.6. Dlatego na pytanie czy warto uczyć się tego, jeżeli zaraz dostaniemy nową wersję Angulara odpowiem, że warto bo po pierwsze uczycie się nowego stacka, który w dużej ilości pokrywa się ze stackiem AngularJS 2, nabywacie wiedzy o good pratcies, zmieniacie również swoje myślenie na myślenie modułowe i componentowe. Siadając i ucząc się nowego Angulara z powyższą wiedzą wszystko będzie dla was o wiele łatwiejsze!
 
 # 10. Reference i uwagi
-### 10.1 Przydatne linki
 - [John Papa's ng1 styleguide - bardziej jako antypatterny](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md)
 - [John Papa's ng2 styleguide](https://github.com/johnpapa/angular-styleguide/blob/master/a2/README.md)
 - [Todd Motto ng1 styleguide](https://github.com/toddmotto/angular-styleguide)
