@@ -64,7 +64,7 @@ Weźmy za przykład poniższy komponent:
 ```javascript
 .component('myComponent', {
    bindings: {
-     config: '<'
+     config: '='
    },
    controller: function() {
      console.log(this.config);
@@ -77,7 +77,7 @@ Możemy powiedzieć, że w `template` `{{$ctrl.config}}` to to samo co `this.con
 
 
 ### 2.2 One-way databinding
-One-way databinding uzyskujemy poprzez skonfigurowanie jakiejś zmiennej w `bindings` za pomocą operatora `<`. Oznacza to, że wszystkie zmiany rodzica zostaną przeniesione na dziecko, ale jakakolwiek zmiana w dziecki (componencie) zostanie zignorowana przez rodzica. 
+One-way databinding uzyskujemy poprzez skonfigurowanie jakiejś zmiennej w `bindings` za pomocą operatora `<`. Oznacza to, że wszystkie zmiany rodzica zostaną przeniesione na dziecko, ale jakakolwiek zmiana w dziecku (componencie) zostanie zignorowana przez rodzica. 
 
 ```javascript
 .component('myComponent', {
