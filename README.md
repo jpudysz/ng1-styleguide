@@ -762,9 +762,21 @@ Na tym właśnie polega cała idea TypeScripta - typowanie, klasy, dziedziczenie
 # 8. Przykładowa aplikacja
 
 # 9. Co dalej?
-### 9.1 AngularJS 2
-### 9.2 Yeoman generator
+Celem tego guideline'a jest zaznajomienie jak największej ilości developerów z nowym stackiem technologicznym oraz przygotowanie ich aby w jak najłatwiejszy sposób przestawili się na nowy ekosystem AngularJS2. Prawdopodobnie dopiero w Q4 2016 community będzie na tyle rozwinięte, że będziemy w stanie przejść ze stackiem na AngularJS2. Do tego czasu warto zmienić swój sposób myślenia i zapomnieć o wszystkich starych nawykach.
+
+Planuję rozwijać i updatować ten guideline do Q4 2016 kiedy oficjalnie przejdziemy na AngularJS 2. AngularJS w wersji pierwszej jeszcze długo nie umrze i już za niedługo możemy spodziewać się nowej wersji 1.6. Dlatego na pytanie czy warto uczyć się tego, jeżeli zaraz dostaniemy nową wersję Angulara odpowiem, że warto bo po pierwsze uczycie się nowego stacka, który w dużej ilości pokrywa się ze stackiem AngularJS 2, nabywacie wiedzy o good pratcies, zmieniacie również swoje myślenie na myślenie modułowe i componentowe. Siadając i ucząc się nowego Angulara z powyższą wiedzą wszystko będzie dla was o wiele łatwiejsze!
 
 # 10. Reference i uwagi
 ### 10.1 Przydatne linki
-### 10.2 Kontakt
+- [John Papa's ng1 styleguide - bardziej jako antypatterny](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md)
+- [John Papa's ng2 styleguide](https://github.com/johnpapa/angular-styleguide/blob/master/a2/README.md)
+- [Todd Motto ng1 styleguide](https://github.com/toddmotto/angular-styleguide)
+- [Airbnb ES6 styleguide](https://github.com/airbnb/javascript)
+- [Lessons learned from PayPal](https://medium.com/@bluepnume/sane-scalable-angular-apps-are-tricky-but-not-impossible-lessons-learned-from-paypal-checkout-c5320558d4ef#.xbx6x2ltv) 
+- [Todd Motto - blog](https://toddmotto.com/)
+- [Todd Motto - ngMigrate](http://ngmigrate.telerik.com/)
+- [Angular Performance - Todd Motto](https://www.youtube.com/watch?v=LoIuokh6NUI&list=WL&index=6)
+- [TypeScript - official handbook](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+- [Instagram team - Webpack howto](https://github.com/petehunt/webpack-howto)
+
+W razie znalezienia jakichkolwiek niejasności, literówek i (mam nadzieję że nie) błędów ortograficznych proszę o otwarcie PR. Jeżeli ktoś chciałby napisać jakiś dodatkowy rozdział/ zmienić istniejący/ napisać lepsze przykłady to bardzo do tego zachęcam i jestem otwarty na wszelkie propozycje.
