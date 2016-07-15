@@ -94,7 +94,7 @@ One-way databinding uzyskujemy poprzez skonfigurowanie jakiejś zmiennej w `bind
 ```
 ### 2.3 Stateless components
 ### 2.4 Lifecycle hooks
-### 2.5 Multi-slot transcusion
+### 2.5 Multi-slot transclusion
 
 # 3. Webpack jako module bundler
 ### 3.1 Czym jest webpack?
