@@ -110,11 +110,48 @@ const StatelessComponent = {
   `
 };
 
-angular.module('app.comonents.stalessComponent', [])
+angular.module('app.components.statelessComponent', [])
        .component('statelessComponent', StatelessComponent);
 ```
 
 ### 2.4 Lifecycle hooks
+`Lifecycle hooks` to funkcje do których ma dostęp komponent i które dotyczą jego cyklu życia. Od `Angular 1.5.0` mamy dostęp do 4 funkcji, które zostaną wywołane automatycznie przez `AngularJS` w określonych sytuacjach:
+
+**`$onInit`** - zostanie wywołany gdy wszystkie `bindings` zostaną zaincjalizowane dzięki czemu będziemy mieli do nich dostęp. Funkcję tą można traktować jako `constructor` w klasie.
+
+```javascript
+.component('myComponent', {
+  bindings: {
+    prop: '='
+  },
+  controller: function() {
+    this.$onInit = function() {
+       console.log(this.prop);
+    }
+  }
+});
+```
+
+Jeśli tworzymy komunikacje pomiędzy dwoma dyrektywami należy pamiętać, że `$onInit` zostanie wywołany **po** inicjalizacji `controllera` rodzica. Co więcej dostęp do niego otrzymujemy poprzez `this.parent`, a nie jak w `dyrektywie` przez przedostatni parametr funkcji link: `link: function(scope, element, attrs, ctrl, transcludeFn)`
+
+```javascript
+.component('parentComponent', {...})
+.component('childComponent', {
+  ...
+  require: {
+    parent: '^parentComponent'
+  },
+  controller: function() {
+    this.$onInit = function() {
+      //dostęp do API rodzica
+      console.log(this.parent.someFunction());
+    }
+  }
+});
+```
+
+
+
 ### 2.5 Multi-slot transclusion
 
 # 3. Webpack jako module bundler
