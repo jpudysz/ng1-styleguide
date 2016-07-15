@@ -7,6 +7,14 @@ Dalej w 4 i 5 rozdziale znajduje się spis wszystkich potrzebnych wam informacji
 
 # 2. Zmiany w AngularJS 1.5+
 ### 2.1 Components
+**Wszystko jest komponentem.** To zdanie musicie zapamiętać przez najbliższe kilka lat pisząc aplikacje frontendowe. `React`, `Polymer`, `WebComponents`, częściowo `AngularJS 1` (dyrektywy) i `AngularJS 2` - wszystkie te biblioteki/standardy/frameworki wskazują jasny rozwój i kierunek w jakim będziemy (lub już zaczeliśmy pisać) nasze aplikacje.
+
+**Czym jest komponent?**
+Komponent to nie tylko funckja ze swoją logiką i templatem HTML. Komponent to coś niepodzielnego, unitowego, zawierającego swoje zależności, często udostępniającego publiczne API (przez atrybuty w HTML), posiadającego wbudowane style, template HTML a co najważniejsze enkapsulującego wszystkie te rzeczy w jedną całość.
+Dyrektywy w `AngularJS` były pierwszym krokiem w stronę tworzenia komponentów. Jeżeli chcemy zobaczyć jak powinny wyglądać te prawdziwe zgodne ze standardem W3C powinniśmy spróbować stworzyć jakiś w Polymerze. Budując aplikacje z wykorzystaniem jakiegoś frameworka/biblioteki idealnymi kandydatami są `React` i `AngularJS 2`.
+
+Developerzy Googla udostępnili nam komponenty w `AngularJS 1` od wersji `1.5.0`. Musimy jednak pamiętać, że to tak na prawdę 'syntactic sugar' na dyrektywie i daleko im do tych prawdziwych.
+
 ### 2.2 One-way databinding
 ### 2.3 Lifecycle hooks
 ### 2.4 Multi-slot transcusion
