@@ -165,6 +165,18 @@ Jeśli tworzymy komunikacje pomiędzy dwoma dyrektywami należy pamiętać, że 
 });
 ```
 
+**`$onDestroy`** - zostanie wywołany gdy nasza dyrektywa otrzyma `event` `$destroy` - użyteczne podczas zwalniania pamięci i innego czyszczenia po dyrektywie.
+
+```javascript
+.component('myComponent', {
+  controller: function() {
+    this.$onDestroy = function() {
+      //identycznie jak w .directive scope.$on('$destroy', function(){...})
+    }
+  }
+});
+```
+
 ### 2.5 Multi-slot transclusion
 
 # 3. Webpack jako module bundler
