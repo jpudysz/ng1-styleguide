@@ -206,6 +206,9 @@ Jeśli tworzymy komunikacje pomiędzy dwoma komponentami należy pamiętać, że
 
 # 3. Webpack jako module bundler
 ### 3.1 Czym jest webpack?
+Webpack to tzw. module bundler, czyli narzędzie pozwalające na analizę zależności modułów aplikacji i generowanie specjalnie przygotowanych fragmentów statycznego kodu (ang. chunks). Webpack pozwala za pomocą specjalnej konfiguracji zarządzać działaniem całej aplikacji. Konfiguracja ta wg. konwencji powinna znaleźć się w pliku webpack.config.js.
+
+Gdy korzystamy z webpacka każdy plik staje się modułem, oznacza to, że jeśli jakiś plik nie został dołącząny w innym pliku przez `require` lub `import` nie zostanie on dołączony do wynikowego `bundle`.
 ### 3.2 Gulp vs Webpack
 ### 3.3 Opis funkcjonalności
 ### 3.4 Przykładowa konfiguracja
