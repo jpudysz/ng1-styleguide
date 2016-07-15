@@ -15,9 +15,86 @@ Dyrektywy w `AngularJS` były pierwszym krokiem w stronę tworzenia komponentów
 
 Developerzy Googla udostępnili nam komponenty w `AngularJS 1` od wersji `1.5.0`. Musimy jednak pamiętać, że to tak na prawdę 'syntactic sugar' na dyrektywie i daleko im do tych prawdziwych.
 
+Standardowe podejście z AngularJS 1 - dyrektywa:
+```javascript
+.directive('directiveName', function() {
+   return {
+     //konfiguracja:
+     //link, controller, preLink, postLink, compile
+     //inne X opcji 
+   }
+});
+```
+
+Nowe podejście od AngularJS 1.5.0 - component:
+```javascript
+.component('myComponent', {
+   bindings: {}, // zastępuje nam scope: {} 
+   controller: function() {
+     //dostęp do bindings za pomocą this.propName
+   },
+   template: `{{$ctrl.propName}}`,
+   templateUrl: 'path/to/template', //1:1 jak w .directive
+   controllerAs: '$ctrl', //domyślnie dla każdego  komponentu (możemy pominąć)
+   require: {}, //do komunikacji pomiędzy dyrektywami
+   transclude: false //tak jak w .directive ale dodatkowo multi-slot transclusion (podrozdział 2.5)
+});
+```
+
+Podsumowując powyższy snippet `.component` udostępnia nam **tylko 7 opcji!** Koniec z miliardem propertisów w konfiguracji dyrektywy.
+
+Używając `component` pozbywamy się: 
+* compile
+* preLink
+* postLink
+* bindToController
+* controllerAs (automatycznie zostaje przypisany alias `$ctrl`,  jeśli chcemy możemy go nadpisać)
+* priority
+* restrict (automatycznie `restrict: 'E'`)
+* scope (aotmatycznie zawsze izloowana)
+* terminal
+* templateNamespace
+* multiElement
+
+Template w dyrektywie dostaje automatyczny dostęp do wzystkich właściwości `controllera` za pomocą zmiennej `$ctrl`.
+Weźmy za przykład poniższy komponent:
+```html
+<my-component config="config"></my-component>
+```
+```javascript
+.component('myComponent', {
+   bindings: {
+     config: '<'
+   },
+   controller: function() {
+     console.log(this.config);
+   },
+   template: `{{$ctrl.config}}`
+});
+```
+
+Możemy powiedzieć, że w `template` `{{$ctrl.config}}` to to samo co `this.config` w `controller` i to samo co `config` w `bindings: {}` oraz `config` na tagu HTML.
+
+
 ### 2.2 One-way databinding
-### 2.3 Lifecycle hooks
-### 2.4 Multi-slot transcusion
+One-way databinding uzyskujemy poprzez skonfigurowanie jakiejś zmiennej w `bindings` za pomocą operatora `<`. Oznacza to, że wszystkie zmiany rodzica zostaną przeniesione na dziecko, ale jakakolwiek zmiana w dziecki (componencie) zostanie zignorowana przez rodzica. 
+
+```javascript
+.component('myComponent', {
+   bindings: {
+      propA: '=', //object
+      propB: '@', //string
+      propC: '&', //expression
+      propDL '<' //nowość - one-way databinding
+   },
+   controller: function() {
+      this.propDL = 0; //zostanie zignorowane przez rodzica
+   }
+});
+```
+### 2.3 Stateless components
+### 2.4 Lifecycle hooks
+### 2.5 Multi-slot transcusion
 
 # 3. Webpack jako module bundler
 ### 3.1 Czym jest webpack?
