@@ -132,7 +132,7 @@ angular.module('app.components.statelessComponent', [])
 });
 ```
 
-Jeśli tworzymy komunikacje pomiędzy dwoma dyrektywami należy pamiętać, że `$onInit` zostanie wywołany **po** inicjalizacji `controllera` rodzica. Co więcej dostęp do niego otrzymujemy poprzez `this.parent`, a nie jak w `dyrektywie` przez przedostatni parametr funkcji link: `link: function(scope, element, attrs, ctrl, transcludeFn)`
+Jeśli tworzymy komunikacje pomiędzy dwoma komponentami należy pamiętać, że `$onInit` zostanie wywołany **po** inicjalizacji `controllera` rodzica. Co więcej dostęp do niego otrzymujemy poprzez `this.parent`, a nie jak w `dyrektywie` przez przedostatni parametr funkcji link: `link: function(scope, element, attrs, ctrl, transcludeFn)`
 
 ```javascript
 .component('parentComponent', {...})
@@ -165,13 +165,38 @@ Jeśli tworzymy komunikacje pomiędzy dwoma dyrektywami należy pamiętać, że 
 });
 ```
 
-**`$onDestroy`** - zostanie wywołany gdy nasza dyrektywa otrzyma `event` `$destroy` - użyteczne podczas zwalniania pamięci i innego czyszczenia po dyrektywie.
+**`$onDestroy`** - zostanie wywołany gdy nasz komponent otrzyma `event` `$destroy` - użyteczne podczas zwalniania pamięci i innego czyszczenia po dyrektywie.
 
 ```javascript
 .component('myComponent', {
   controller: function() {
     this.$onDestroy = function() {
       //identycznie jak w .directive scope.$on('$destroy', function(){...})
+    }
+  }
+});
+```
+
+**`$onChanges`** - zostanie wywołany podczas wykrycia zmiany w `bindings` (także podczas pierwszej inicjalizacji) tylko gdy wiązanie jest typu `<` lub `@`.
+
+```javascript
+.component('myComponent', {
+  bindings: {
+    propA: '<',
+    propB: '@'
+  },
+  controller: function() {
+    this.$onChanges = function(changes) {
+      // zakładając że parent zmienił propA, otrzymamy:
+      //changes: {
+      //   propA: {
+      //      currentValue: value,
+      //      previousValue: value
+      //   }
+      //}
+      
+      // Dodatkowy mamy dostęp przez prototype do specjalnej metody .isFirstChange()
+      // changes.propaA.isFirstChange();
     }
   }
 });
