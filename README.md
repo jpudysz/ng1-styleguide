@@ -93,6 +93,27 @@ One-way databinding uzyskujemy poprzez skonfigurowanie jakiejś zmiennej w `bind
 });
 ```
 ### 2.3 Stateless components
+Stateless component to komponent, którego jedynym zadaniem jest wyświetlanie szablonu na podstawie przekazanych do niego danych.
+Przykładowa implementacja: 
+
+```javascript
+const StatelessComponent = {
+  bindings: {
+    people: '<'
+  },
+  template: `
+    <ul>
+       <li ng-repeat="person in $ctrl.people">
+         <span>{{person.fullName}}</span> - <span>{{person.age}}</span>
+       </li>
+    </ul>
+  `
+};
+
+angular.module('app.comonents.stalessComponent', [])
+       .component('statelessComponent', StatelessComponent);
+```
+
 ### 2.4 Lifecycle hooks
 ### 2.5 Multi-slot transclusion
 
