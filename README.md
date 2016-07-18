@@ -265,6 +265,96 @@ Gdy korzystamy z webpacka każdy plik staje się modułem, oznacza to, że jeśl
 ### 3.3 Opis funkcjonalności
 ### 3.4 Przykładowa konfiguracja
 
+Poniższy snippet zawiera większość koncepcji webpacka, z którymi spotkacie się w projektach. Należy pamiętać, że jedna konfiguracja to zazwyczaj za mało. Warto stworzyć osobną dla builda, testów i procesu developmentu lub ifować fragmenty kodu w zależności od `process.env`. Konfigurację wg. konwencji umieszczamy w pliku `webpack.config.js`:
+
+```javascript
+//webpack.config.js 
+//Przykładowa konfiguracja projekt z ES6 i SASS
+const path = require('path');
+const webpack = require('webpack');
+
+// Webpack wspiera system 3rd party pluginów, wystarczy znaleźć interesujący w npm i go pobrać
+
+//automatyczne otwieranie nowego okna a'la BrowserSync
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+//kopiuje pliki/katalogi podczas builda
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+//helpery, aby nie hardcodować stringów, warto wypchać je do osobnego pliku config.js
+const app = path.join(__dirname, 'app');
+const public = path.join(__dirname, 'public');
+const port = 3000;
+
+module.exports = {
+    //entry czyli "wejście" do naszej aplikacji z którego webpack zacznie tworzyć drzewo zależności
+    // entry może przyjmować wiele "wejść" - przydatne przy lazy loadingu
+    entry: {
+        'app': './app.js'
+    },
+    //output czylu "wyjście" naszej aplikacji
+    //poniższa konfiguracja oznacza: weź każde entry i stwórz plik np. app.bundle.js (name = klucz z entry),
+    //umieść go w katalogu public: "/public/app.bundle.js"
+    output: {
+        path: public,
+        filename: '[name].bundle.js'
+    },
+    //konfiguracja webpack-dev-server, który zastępuje w całości browserSynca
+    devServer: {
+        //serwuj dane z katalogu public (powiązane z output)
+        contentBase: public,
+        outputPath: public,
+        // wsparcie dla HTML history api
+        historyApiFallback: true,
+        //gzipuj bundle
+        compress: true,
+        //auto-refresh po wykryciu zmiany
+        hot: true,
+        inline: true,
+        //nasłuchuj na porcie
+        port: port
+    },
+    module: {
+        //Dla webpacka wszystko jest JavaScriptem, dlatego jeśli używamy innych rozszerzeń np. scss
+        //musimy przekazać mu informację w jaki sposób powinien wczytać dany plik i przekonwertować go na js
+        loaders: [
+            //test - regex na dane rozszerzene pliku
+            //loader - nazwa loadera instalowanego przez npm
+            //query - opcje konfiguracyjne danego loadera
+            //include/exclude - regex na dane directory
+            
+            //Poniższa konfiguracja oznacza: dla wszystkich plików w katalogu app z rozszerzeniem *.js
+            //użyj babela (konwersja ES6 -> ES5)
+            {test: /\.js$/, loader: 'babel', query: {presets: ['es2015']}, include: /app/},
+            
+            //loadery są aplikowane od prawej do lewej tj dla plików *.scss otrzymamy:
+            //sass-loader -> css-laoder -> style-loader
+            {test: /\.scss$/, loader: 'style!css!sass', include: /app/}
+        ]
+    },
+    resolve: {
+        //gdzie webpack ma szukać modułów
+        //np. node_module bower_components itp
+        modulesDirectories: [
+            'node_modules'
+        ],
+        //tablica rozszerzeń, która zostanie użyta do resolve modułów
+        //np. jeśli moduł jest zapisany w CoffeeScript powinniśmy umieścić w tablicy .coffe
+        //extensions są brane od prawej do lewej
+        extensions: ['', '.js'] 
+    },
+    //rejestracja, konfiguracja pluginów
+    plugins: [
+        new OpenBrowserPlugin({
+            url: `http://localhost:${port}`
+        }),
+        new CopyWebpackPlugin([
+            {from: 'mocks'}
+        ])
+    ]
+};
+```
+
+
 # 4. ES6
 ### 4.1 Const i let
 Pisząc w ES6 powinniśmy całkowicie zrezygnować z `var`. Co więcej powinniśmy w 90% przypadków używać `const` czyli oznaczać zmienne jako niemodyfikowalne. `const` zapewnia że referencja do danej zmiennej nie zostanie zmieniona, a każda próba takiej zmiany spowoduje błąd. Jeśli nasza zmienna jest mutowalna powinniśmy użyć `let`. 
