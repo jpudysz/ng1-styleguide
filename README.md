@@ -1188,8 +1188,34 @@ TypeScript to kwestia idnywidualna. Część z was może nie zgodzić się z kon
 
 Chociaż jest to bardzo wygodne powinniśmy unikać `two-way databinding`. Obserwując obecny rozwój `React` i `AngularJS 2` widzimy że popularne stało się myślenie `one-way`. Pozwala to w dużej mierze pisać bardziej wydajny kod, unikać mutowalności danych co przekłada się na odporność na błędy. Myśląc również w kontekscie migracji do `AngularJS 2` powinniśmy korzystać w naszych komponentach tylko z operatora `<` i wybrać jeden z wielu sposobów komunikacji z pkt. "Sposoby komunikacji rodzic-dziecko, dziecko-rodzic".
 
-- **Korzystaj z lifecycle hooks**
 - **Używaj 'ngInject'**
+
+Pisząc aplikację z wykorzystaniem `TypeScripta` zmienia się sposób `DI` (wstrzykiwania zależności) do naszych serwisów/dyrektyw i komponentów. Aby wstrzyknąć coś do przykładowego komponentu musimy podać typ danej zmiennej i udekorować `constructor` przez `ngInject`. Komentarz ten pozwoli webpackowi (przez `ng-inject-loader`) stworzyć inline tablicę zależności znaną z klasycznego `AngularJS` np. (`["$scope", "$http", function($scope, $http) {}]`).
+
+```javascript
+class ModalComponent{
+
+    constructor(
+        private $scope: ng.IScope,
+        private $document: ng.IDocumentService
+    ) {
+        'ngInject';
+    }
+
+    public $onInit() {
+        this.$document.on('keydown', ($event) => this.onKeyEntered($event));
+    }
+
+    public $onDestroy() {
+        this.$document.off('keydown');
+    }
+    
+    public onKeyEntered($event) {
+       console.log($event);
+    }
+}
+```
+
 - **Wszystko jest modułem**
 - **Buduj apliakcje jako drzewo komponentów**
 - **index.js**
