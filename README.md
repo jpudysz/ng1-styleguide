@@ -1162,17 +1162,22 @@ Jest to raczej zasada oczywista, ale nie dla wszsystkich. `$rootScope` używamy 
 Uwaga! Unikajmy `$broadcast` i `$emit` jako sposobu synchronizacji naszych komponentów, traktujmy to jako ostateczność!
 
 Sposoby komunikacji `rodzic-dziecko`:
-- przekazywanie parametrów do dyrektywy w dół przez atrybuty w `HTML`
-- serwis (synchronizacja modelu)
-- `$broadcast` - rodzic wymusza wywołanie metody na dziecku
+
+1. przekazywanie parametrów do dyrektywy w dół przez atrybuty w `HTML`
+2. serwis (synchronizacja modelu)
+3. `$broadcast` - rodzic wymusza wywołanie metody na dziecku
 
 Sposoby komunikacji `dziecko-rodzic`:
-- wywoływanie funkcji przez `bindings` i `&`
-- `$watch` na zmiennych z `bindings` typu `=`, `<`, `@`
-- seriws (synchronizacja modelu)
-- dostęp do `controller` rodzica przez `require` i `this.parent`
+
+1. wywoływanie funkcji przez `bindings` i `&`
+2. `$watch` na zmiennych z `bindings` typu `=`, `<`, `@`
+3. seriws (synchronizacja modelu)
+4. dostęp do `controller` rodzica przez `require` i `this.parent`
 
 - **Zapomij o $scope, chyba że potrzbujesz $watch**
+
+Jedynym sensownym wytłumaczenia korzystania ze `$scope` jest użycie `$watch`. Od AngularJS w wersji 1.5.x nasz template zostaje automatycznie zbindowany do zmiennej `$ctrl` dlatego nie musimy korzystać również z `var vm = this`. 
+
 - **Używaj ES6/TS class tam gdzie jest to możliwe**
 - **Unikaj 2-way-databinding**
 - **Korzystaj z lifecycle hooks**
