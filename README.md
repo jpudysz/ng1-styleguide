@@ -1091,6 +1091,29 @@ Zgodnie z nowym podejściem pisania aplikacji z wykorzystaniem `components` trac
 To samo tyczy się `lodash/underscore` - pisząc w ES6 większość metod została wbudowana w język. Na podstawie ostatniego projektu komerycjnego mogę potwierdzić, że brak `lodasha` jest bolesny tylko na początku a z czasem zaczynamy doceniać sam język.
 
 - **Wszystko jest komponentem**
+
+I to dosłownie. Nawet strona z katalogu `pages` to nie zlepek `ng-controller` i `HTML` tylko pełnoprawny `componenent`, z własnym `scope` , `template` i logiką. Nowa wersja `ui-router` wspiera routing po komponentach. W tradycyjnym podejściu konfiguracja może być nastepująca:
+
+```javascript
+$stateProvider.state('app.pages.dashboard', {
+    url: '/dashboard',
+    views: {
+        'main@': {
+            template: '<dashboard-page></dashboard-page>',
+        },
+    },
+    data: {
+        permissions: {
+            only: [ROLE.ADMIN],
+            redirectTo: 'app.pages.login',
+        },
+    },
+});
+```
+
+Rezygnujemy również z `controller` w konfiguracji state'a. Pamiętajmy że `resolve` powinien posiadać logikę związaną z autentykacją/redirectem a nie fetchowaniem danych dla danego komponentu. Dane dociągamy w samym komponencie wyświetlając przy tym piękny loader.
+
+
 - **Przestań używać controller, controllerAs, ng-controller**
 - **Zrezygnuj z factory i provider na rzecz service**
 - **ui-router powinien operować na komponentach**
