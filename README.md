@@ -1255,6 +1255,32 @@ export class UserService {
 - **Zarządzaj interfejsami**
 - **Unikaj zahardcodowanych nazw modułów**
 - **Avoid wildcard imports**
+
+Unikaj importowania wszystkiego z modułu, dołączaj tylko to, co jest Ci potrzebne:
+```javascript
+//źle
+import * as Helpers from '../utils/helpers';
+```
+
+```javascript
+//ok
+import {ParseCurrency, ComputeTax} from '../utils/helpers';
+```
+
+Unikaj również powtarzających się importów:
+```javascript
+//źle
+import {A, B} from './c';
+import {D} from './e';
+import {F} from './c'
+```
+
+```javascript
+//ok
+import {A, B, F} from './c';
+import {D} from './e';
+```
+
 - **Performance tricks**
 
 # 7. Starter
