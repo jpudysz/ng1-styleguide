@@ -1184,7 +1184,10 @@ Korzystanie z ES6 powinno być oczywiste. Jest to standard od 2015 roku, który 
 
 TypeScript to kwestia idnywidualna. Część z was może nie zgodzić się z koniecznością używania `TypeScrpipt` w projektach. Jednak z własnego doświadczenia mogę powiedzieć, że aplikacja napisana w całości w `TypeScript` staje się łatwa w utrzymaniu, odporna na literówki, dziwne błędy odkrywane poczas runtime, nie musimy pisac testów spradzających typ zmiennych i co najważniejsze otrzymujemy `Intellisense` dla naszych modeli i funkcji.
 
-- **Unikaj 2-way-databinding**
+- **Unikaj two-way databinding**
+
+Chociaż jest to bardzo wygodne powinniśmy unikać `two-way databinding`. Obserwując obecny rozwój `React` i `AngularJS 2` widzimy że popularne stało się myślenie `one-way`. Pozwala to w dużej mierze pisać bardziej wydajny kod, unikać mutowalności danych co przekłada się na odporność na błędy. Myśląc również w kontekscie migracji do `AngularJS 2` powinniśmy korzystać w naszych komponentach tylko z operatora `<` i wybrać jeden z wielu sposobów komunikacji z pkt. "Sposoby komunikacji rodzic-dziecko, dziecko-rodzic".
+
 - **Korzystaj z lifecycle hooks**
 - **Używaj 'ngInject'**
 - **Wszystko jest modułem**
