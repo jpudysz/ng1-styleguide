@@ -203,6 +203,58 @@ Jeśli tworzymy komunikacje pomiędzy dwoma komponentami należy pamiętać, że
 ```
 
 ### 2.5 Multi-slot transclusion
+Transclusion w kontekscie AngularJS to wstawianie HTML zawartego pomiędzy znacznikami naszej dyrektywy we wcześniej oznaczone w niej miejsce np.:
+
+```HTML
+<transclude-demo>
+   <p>Transclude</p>
+</transclude-demo>
+```
+
+```javascript
+.directive('transcludeDemo', {
+   transclude: true,
+   scope: true,
+   replace: true,
+   template: '<div>Directive and <span ng-transclude></span><div>'
+});
+```
+
+Wynik:
+```HTML
+  <div>Directive and <span>Transclude</span><div>
+```
+Aby stworzyć `transclude` wystarczy udekorować dany node HTML przez dyrektywę `ng-transclude`. Problem polega na tym, że nie jesteśmy w stanie wybrać co chcielibyśmy transludować i z automatu jest to cały HTML zawarty pomiędzy znacznikami naszej dyrektywy. Od AngularJS 1.5.x otrzymujemy wsparcie dla tzw. multi slot transclusion. Oznacza to że możemy wstrzyknąć kod HTML w wiele miejsc naszego template:
+
+```HTML
+<multi-transclude>
+	<p>Transclude 1</p>
+	<h1>Transclude 2</h1>
+</multi-transclude>
+```
+
+```javascript
+.component('multiTransclude', {
+   transclude: {
+      'slotName1': 'p',
+      'slotName2': 'h1',
+      'slotName3': '?a'
+   },
+   template: `
+     <div>
+        Static text
+        <div ng-transclude="slotName1"></div>
+        Other divider
+        <div ng-transclude="slotName2"></div>
+     </div>
+   `
+});
+```
+
+Pierwszą zaminą jest to, że property `transclude` przyjmuję tym razem obiekt konfiguracyjny. Kluczem tego obiektu jest nazwa danego slotu, do którego będziemy się później odwoływać w template, natomiast wartośc to node HTML, który chcemy transcludować (może przyjąć również inną dyrektywę). Jeżeli tagi nie będą unikalne tj. pomiędzy znacznikami naszej dyrektywy znajdą się np. 2 elementy `<p>` to zostanie wybrany ten ostatni.
+
+Aby oznaczyć opcjonalność slotu wystarczy oznaczyć go przez `?tagName`. Na końcu wystarczy wskazać miejsce w template gdzie chcemy wstrzyknąć translude przez dyrektywę `ng-transclude="nazwa_slotu"`.
+
 
 # 3. Webpack jako module bundler
 ### 3.1 Czym jest webpack?
