@@ -1111,15 +1111,40 @@ $stateProvider.state('app.pages.dashboard', {
 });
 ```
 
-Rezygnujemy również z `controller` w konfiguracji state'a. Pamiętajmy że `resolve` powinien posiadać logikę związaną z autentykacją/redirectem a nie fetchowaniem danych dla danego komponentu. Dane dociągamy w samym komponencie wyświetlając przy tym piękny loader.
-
+Rezygnujemy również z `controller` w konfiguracji state'a. Pamiętajmy że `resolve` powinien posiadać logikę związaną z autentykacją/redirectem a nie fetchowaniem danych dla danego komponentu. Dane dociągamy w samym komponencie wyświetlając przy tym piękny loader. Dbajmy o user experience i nie rzucajmy białą/pustą stroną tylko po to zeby z niewiadomych przyczy pobierać dane w `ui-router`.
 
 - **Przestań używać controller, controllerAs, ng-controller**
 
-Jest to związane z wcześniejszym punktem. Skoro wszystko jest komponentem (każda strona) nie potrzebujemy Angularowych controllerów.
+Jest to związane z wcześniejszym punktem. Skoro wszystko jest komponentem (każda strona) nie potrzebujemy angularowych controllerów.
 Jedyny `controller` jaki ma prawo istnięć to ten wbudowany w `component`. Jeśli używasz `controller` gdziekolwiek w aplikacji to utrudniasz migrację projektu do `AngularJS 2`.
+
 - **Zrezygnuj z factory i provider na rzecz service**
-- **ui-router powinien operować na komponentach**
+
+Zapomnij o `provider` i `factory`. Tak jak w `AngularJS 2` mamy tylko `service` tak i my powinniśmy dążyć do ujednolicenia typów naszych serwisów. Przykładowy `service`:
+
+```javascript
+import User from '../models/user.model';
+
+export default class UserService {
+
+    public user: User;
+
+    public setUser(user: User): void {
+        this.user = user;
+    }
+
+    constructor(private $http: IHttpService) {
+        'ngInject';
+    }
+
+    public getUser(): angular.IPromise<User> {
+        return $http.get(...);
+    }
+}
+```
+
+Serwis to po prostu klasa, która możemy wstrzyknąć przez `constructor` do naszego komponentu. Więcej o `DI` w `TS` w kolejnych punktach.
+
 - **Spójrz inaczej na dyrektywy**
 - **Zrezygnuj z $rootScope**
 - **Sposoby komunikacji rodzic-dziecko, dziecko-rodzic**
