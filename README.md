@@ -280,7 +280,15 @@ Webpack pozwala nam m.in:
 - Używać pluginów na całym bundlu np. minifikacja JavaScriptu, generowanie automatycznie index.html, wyciągnięcie części wspólnej i zapisanie do osobnego bundla, otwarcie przeglądarki po zbudowaniu projektu czy nawet natywne notyfikacje systemowe powiadamiające nas o błędach/sukcesie builda (i wiele wiele więcej [npm webpack-plugins](https://www.npmjs.com/search?q=webpack-plugin))
 - możliwość stworzenia `lazy-loading` z `ui-router` dla AngularJS 1 (postaram się napisać coś o tym za jakiś czas)
 - użycie `webpack-dev-server` czyli serwera pozwalającego w całości zastąpić nam `BrowserSync` 
-- cdn..
+- korzystanie z `AMD` lub `CommonJS` - wedle naszego uznania
+- ręczne ustawianie `process.env`
+- wyszukanie duplikacji kodu i usunięcie tego zbędnego!
+- generowanie `source-map` 
+- `HMR` (ang. hot module replacement) - pozwala na odświeżanie naszej aplikacji podczas zmian w taki sposób aby trzymała swój stan - przydatne dla `Reacta` , `AngularJS 2`.
+- natywne wsparcie dla modułów `ES6`
+
+Oraz wiele innych, zapraszam do wgłębienia się w Webpacka we własnym zakresie! 
+[Oficjalna dokumentacja](https://webpack.github.io/docs/what-is-webpack.html)
 
 ### 3.4 Przykładowa konfiguracja
 
