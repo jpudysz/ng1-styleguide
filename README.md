@@ -1244,9 +1244,7 @@ export class UserService {
 - **Konwencje nazewnicta plików**
 - **Struktura plików**
 - **Rozważ użycie folderu shared**
-- **Unikaj resolve**
 - **Zrezygnuj a anonimowych funkcji**
-- **Unikaj vm**
 - **Używaj vendor.js dla bibliotek i modułów zewnętrznych**
 - **index.html powinien być tak mały jak to miżliwe**
 - **Pojedyńczy plik index.js powinien rejestrować całą aplikację**
@@ -1255,10 +1253,9 @@ export class UserService {
 - **Unikaj restrict:'E' dla dyrektyw***
 - **Pamiętaj o wyrejestrowaniu funkcji $on i $timeout**
 - **Zarządzaj interfejsami**
-- **Statefull/Stateless components**
-- **Performance tricks**
 - **Unikaj zahardcodowanych nazw modułów**
 - **Avoid wildcard imports**
+- **Performance tricks**
 
 # 7. Starter
 Wkrótce (w trakcie tworzenia)
