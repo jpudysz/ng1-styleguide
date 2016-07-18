@@ -1158,6 +1158,20 @@ Przykład customowych dyrektyw: podświetlanie tekstu, transformacje CSS, animac
 
 Jest to raczej zasada oczywista, ale nie dla wszsystkich. `$rootScope` używamy tylko jeśli musimy zmienić coś poza `ui-view` gdzieś gdzie nie mamy dostępu. Użycie `$rootScope` jest też usprawiedliowne podczas `$broadcast` eventów w dół np. gdy side menu zostało zamknięte.
 - **Sposoby komunikacji rodzic-dziecko, dziecko-rodzic**
+
+Uwaga! Unikajmy `$broadcast` i `$emit` jako sposobu synchronizacji naszych komponentów, traktujmy to jako ostateczność!
+
+Sposoby komunikacji `rodzic-dziecko`:
+- przekazywanie parametrów do dyrektywy w dół przez atrybuty w `HTML`
+- serwis (synchronizacja modelu)
+- `$broadcast` - rodzic wymusza wywołanie metody na dziecku
+
+Sposoby komunikacji `dziecko-rodzic`:
+- wywoływanie funkcji przez `bindings` i `&`
+- `$watch` na zmiennych z `bindings` typu `=`, `<`, `@`
+- seriws (synchronizacja modelu)
+- dostęp do `controller` rodzica przez `require` i `this.parent`
+
 - **Zapomij o $scope, chyba że potrzbujesz $watch**
 - **Używaj ES6/TS class tam gdzie jest to możliwe**
 - **Unikaj 2-way-databinding**
