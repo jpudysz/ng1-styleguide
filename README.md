@@ -269,8 +269,7 @@ Niesie to za soba wiele udogodnień:
 
 Webpack to świetne narzędzie, które w całości zastępuje task runnery. Nasza aplikacja staje się 'inteligentna' , świadoma kontentu i zależności między nimi. Jedyny minus webpacka to to że posiada duży próg wejścia. Jednak z własnego doświadczenia mogę powiedzieć, że po pewnym czasie wszystko staje się oczywiste i nie wyobrażam sobie powrotu do pisania tasków w `Gulp` lub `Grunt`.
 
-### 3.2 Gulp vs Webpack
-### 3.3 Opis funkcjonalności
+### 3.2 Opis funkcjonalności
 Co możemy zrobić z webpackiem? Niemal wszystko! 
 Jeżeli brakuje nam jakiejś funkcjonalności wystarczy, że zainstalujemy jakiś loader lub plugin z ogólniedostępnego katalogu npm.
 W ostateczności nic nie stoi na przeszkodzie aby napisać swój własny ;)
@@ -290,7 +289,7 @@ Webpack pozwala nam m.in:
 Oraz wiele innych, zapraszam do wgłębienia się w Webpacka we własnym zakresie! 
 [Oficjalna dokumentacja](https://webpack.github.io/docs/what-is-webpack.html)
 
-### 3.4 Przykładowa konfiguracja
+### 3.3 Przykładowa konfiguracja
 
 Poniższy snippet zawiera większość koncepcji webpacka, z którymi spotkacie się w projektach. Należy pamiętać, że jedna konfiguracja to zazwyczaj za mało. Warto stworzyć osobną dla builda, testów i procesu developmentu lub ifować fragmenty kodu w zależności od `process.env`. Konfigurację wg. konwencji umieszczamy w pliku `webpack.config.js`:
 
