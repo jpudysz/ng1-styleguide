@@ -1155,6 +1155,8 @@ Podsumowując powyższe zdanie, dyrektywa to np. `ng-if` , `ng-switch`, poniewa�
 Przykład customowych dyrektyw: podświetlanie tekstu, transformacje CSS, animacje itp.
 
 - **Zrezygnuj z $rootScope**
+
+Jest to raczej zasada oczywista, ale nie dla wszsystkich. `$rootScope` używamy tylko jeśli musimy zmienić coś poza `ui-view` gdzieś gdzie nie mamy dostępu. Użycie `$rootScope` jest też usprawiedliowne podczas `$broadcast` eventów w dół np. gdy side menu zostało zamknięte.
 - **Sposoby komunikacji rodzic-dziecko, dziecko-rodzic**
 - **Zapomij o $scope, chyba że potrzbujesz $watch**
 - **Używaj ES6/TS class tam gdzie jest to możliwe**
