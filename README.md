@@ -1084,7 +1084,12 @@ angular.module('app.routing', [])
 Na tym właśnie polega cała idea TypeScripta - typowanie, klasy, dziedziczenie i darmowe typingsy. Budując model aplikacji w osobnych klasach, typując odpowiedzi z serwera, korzystając z generics i typingsów cały flow wszystkich programistów jest o wiele szybszy i odporny na literówki i błędne typowania. Zapraszam do analizy staretera i przykładowej aplikacji, gdzie powyższa teoria została zaprezentowana w praktyce.
 
 # 6. Przykłady
-- **Unikaj jQuery**
+- **Unikaj jQuery i lodash**
+
+Zgodnie z nowym podejściem pisania aplikacji z wykorzystaniem `components` tracimy dostęp do `DOM` dyrektywy. Wciąż możemy używać tradycyjnej składni jeśli musimy manipulować `HTML`. Na pytanie czy potrzebujemy `jQuery` każdy musi odpowiedź indywidualnie w kontekscie projektu. Warto jednak zrezygnować z dodatkowej zależności na rzecz `jqLite`.
+
+To samo tyczy się `lodash/underscore` - pisząc w ES6 większość metod została wbudowana w język. Na podstawie ostatniego projektu komerycjnego mogę potwierdzić, że brak `lodasha` jest bolesny tylko na początku a z czasem zaczynamy doceniać sam język.
+
 - **Wszystko jest komponentem**
 - **Przestań używać controller, controllerAs, ng-controller**
 - **Zrezygnuj z factory i provider na rzecz service**
