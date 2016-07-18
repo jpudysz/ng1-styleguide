@@ -1115,6 +1115,9 @@ Rezygnujemy również z `controller` w konfiguracji state'a. Pamiętajmy że `re
 
 
 - **Przestań używać controller, controllerAs, ng-controller**
+
+Jest to związane z wcześniejszym punktem. Skoro wszystko jest komponentem (każda strona) nie potrzebujemy Angularowych controllerów.
+Jedyny `controller` jaki ma prawo istnięć to ten wbudowany w `component`. Jeśli używasz `controller` gdziekolwiek w aplikacji to utrudniasz migrację projektu do `AngularJS 2`.
 - **Zrezygnuj z factory i provider na rzecz service**
 - **ui-router powinien operować na komponentach**
 - **Spójrz inaczej na dyrektywy**
