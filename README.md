@@ -271,6 +271,17 @@ Webpack to świetne narzędzie, które w całości zastępuje task runnery. Nasz
 
 ### 3.2 Gulp vs Webpack
 ### 3.3 Opis funkcjonalności
+Co możemy zrobić z webpackiem? Niemal wszystko! 
+Jeżeli brakuje nam jakiejś funkcjonalności wystarczy, że zainstalujemy jakiś loader lub plugin z ogólniedostępnego katalogu npm.
+W ostateczności nic nie stoi na przeszkodzie aby napisać swój własny ;)
+
+Webpack pozwala nam m.in:
+- Pre-procesować dowolny plik za pomocą tzw. loaderów. Przykład działania loadera: dla plików z rozszerzeniem *.js z katalogu app uzyj babela tak aby outputem był ES5. Inny przykład: dla zdjęć poniżej 100kB zamień je na base64 i wstaw je bezpośrednio do pliku css.
+- Używać pluginów na całym bundlu np. minifikacja JavaScriptu, generowanie automatycznie index.html, wyciągnięcie części wspólnej i zapisanie do osobnego bundla, otwarcie przeglądarki po zbudowaniu projektu czy nawet natywne notyfikacje systemowe powiadamiające nas o błędach/sukcesie builda (i wiele wiele więcej [npm webpack-plugins](https://www.npmjs.com/search?q=webpack-plugin))
+- możliwość stworzenia `lazy-loading` z `ui-router` dla AngularJS 1 (postaram się napisać coś o tym za jakiś czas)
+- użycie `webpack-dev-server` czyli serwera pozwalającego w całości zastąpić nam `BrowserSync` 
+- cdn..
+
 ### 3.4 Przykładowa konfiguracja
 
 Poniższy snippet zawiera większość koncepcji webpacka, z którymi spotkacie się w projektach. Należy pamiętać, że jedna konfiguracja to zazwyczaj za mało. Warto stworzyć osobną dla builda, testów i procesu developmentu lub ifować fragmenty kodu w zależności od `process.env`. Konfigurację wg. konwencji umieszczamy w pliku `webpack.config.js`:
