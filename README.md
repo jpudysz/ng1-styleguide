@@ -1129,14 +1129,14 @@ export default class UserService {
 
     public user: User;
 
-    public setUser(user: User): void {
-        this.user = user;
-    }
-
     constructor(private $http: IHttpService) {
         'ngInject';
     }
 
+    public setUser(user: User): void {
+        this.user = user;
+    }
+    
     public getUser(): angular.IPromise<User> {
         return $http.get(...);
     }
@@ -1146,6 +1146,14 @@ export default class UserService {
 Serwis to po prostu klasa, która możemy wstrzyknąć przez `constructor` do naszego komponentu. Więcej o `DI` w `TS` w kolejnych punktach.
 
 - **Spójrz inaczej na dyrektywy**
+Jeśli myślisz w tej chwili o dyrektywie to tak na prawdę myslisz o komponencie. Dyrektywa to wciąż coś co jest dostępne w `AngularJS 2` ale ich zastosowanie jest inne. 
+
+> Dyrektywa to komponent bez widoku. Jej zadaniem jest modyfikacja zachowania danego węzła HTML. 
+> **~Paulo Coelho**
+
+Podsumowując powyższe zdanie, dyrektywa to np. `ng-if` , `ng-switch`, ponieważ **modyfikują** dany węzeł/węzły HTML ale **nie posiadają** własnego widoku.
+Przykład customowych dyrektyw: podświetlanie tekstu, transformacje CSS, animacje itp.
+
 - **Zrezygnuj z $rootScope**
 - **Sposoby komunikacji rodzic-dziecko, dziecko-rodzic**
 - **Zapomij o $scope, chyba że potrzbujesz $watch**
