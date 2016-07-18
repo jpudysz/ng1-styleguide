@@ -1179,6 +1179,11 @@ Sposoby komunikacji `dziecko-rodzic`:
 Jedynym sensownym wytłumaczenia korzystania ze `$scope` jest użycie `$watch`. Od AngularJS w wersji 1.5.x nasz template zostaje automatycznie zbindowany do zmiennej `$ctrl` dlatego nie musimy korzystać również z `var vm = this`. 
 
 - **Używaj ES6/TS class tam gdzie jest to możliwe**
+
+Korzystanie z ES6 powinno być oczywiste. Jest to standard od 2015 roku, który jest wspierany prawie w całości przez większość przeglądarek. W sekcji 4 opisałem najważniejsze zmiany w języku,a szcegółowy opis wszystkich zmian można znaleźć [tutaj](http://es6-features.org/#Constants).
+
+TypeScript to kwestia idnywidualna. Część z was może nie zgodzić się z koniecznością używania `TypeScrpipt` w projektach. Jednak z własnego doświadczenia mogę powiedzieć, że aplikacja napisana w całości w `TypeScript` staje się łatwa w utrzymaniu, odporna na literówki, dziwne błędy odkrywane poczas runtime, nie musimy pisac testów spradzających typ zmiennych i co najważniejsze otrzymujemy `Intellisense` dla naszych modeli i funkcji.
+
 - **Unikaj 2-way-databinding**
 - **Korzystaj z lifecycle hooks**
 - **Używaj 'ngInject'**
