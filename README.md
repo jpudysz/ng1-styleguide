@@ -1217,6 +1217,28 @@ class ModalComponent{
 ```
 
 - **Wszystko jest modułem**
+
+Korzystając z webpacka i ES6 wszystko staje się modułem. Dlatego nie ma potrzeby aby wrapować funkcję w `IIFE` czy też wpisywac ręcznie `"use strict"` (domyślny mode w ES6). Dodatkowo należy pamiętac że jeśli coś nie zostanie jawnie dołączone do bundla przez `require` czy też `import` to się w nim nie znajdzie.
+
+```javascript
+// importowanie zależności do serwisu
+import {UserModel} from '../models/user-model';
+import Config from '../../common/config';
+
+//eksportowanie serwisu na zewnątrz
+export class UserService {
+
+    constructor (private $http: angular.IHttpService) {
+        'ngInject';
+    }
+
+    public findUsers(query: string): ng.IPromise<Array<User>> {
+        return this.$http.get(`${Config.API_URL}/users?query=${query}`)
+            .then((response) => response.data);
+    }
+}
+```
+
 - **Buduj apliakcje jako drzewo komponentów**
 - **index.js**
 - **Konwencje nazewnicta plików**
@@ -1239,11 +1261,10 @@ class ModalComponent{
 - **Avoid wildcard imports**
 
 # 7. Starter
-### 7.1 Struktura plików
-### 7.2 Opis
-### 7.3 Lintery
+Wkrótce (w trakcie tworzenia)
 
 # 8. Przykładowa aplikacja
+Wkrótce (w trakcie tworzenia na podstawie startera)
 
 # 9. Co dalej?
 Celem tego guideline'a jest zaznajomienie jak największej ilości developerów z nowym stackiem technologicznym oraz przygotowanie ich aby w jak najłatwiejszy sposób przestawili się na nowy ekosystem AngularJS2. Prawdopodobnie dopiero w Q4 2016 community będzie na tyle rozwinięte, że będziemy w stanie przejść ze stackiem na AngularJS2. Do tego czasu warto zmienić swój sposób myślenia i zapomnieć o wszystkich starych nawykach.
