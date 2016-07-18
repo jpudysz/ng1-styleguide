@@ -258,9 +258,17 @@ Aby oznaczyć opcjonalność slotu wystarczy oznaczyć go przez `?tagName`. Na k
 
 # 3. Webpack jako module bundler
 ### 3.1 Czym jest webpack?
-Webpack to tzw. module bundler, czyli narzędzie pozwalające na analizę zależności modułów aplikacji i generowanie specjalnie przygotowanych fragmentów statycznego kodu (ang. chunks). Webpack pozwala za pomocą specjalnej konfiguracji zarządzać działaniem całej aplikacji. Konfiguracja ta wg. konwencji powinna znaleźć się w pliku webpack.config.js.
+Webpack to tzw. module bundler, czyli narzędzie pozwalające na analizę zależności modułów aplikacji i generowanie specjalnie przygotowanych fragmentów statycznego kodu (ang. chunks). Webpack pozwala za pomocą specjalnej konfiguracji zarządzać działaniem całej aplikacji. Gdy korzystamy z webpacka każdy plik staje się modułem, oznacza to, że jeśli jakiś plik nie został dołącząny w innym pliku przez `require` lub `import` nie zostanie on dołączony do wynikowego `bundle`. Pod spodem tworzone jest tak na prawdę drzewo zależności, które możemy wygenerować dla każdego projektu:
 
-Gdy korzystamy z webpacka każdy plik staje się modułem, oznacza to, że jeśli jakiś plik nie został dołącząny w innym pliku przez `require` lub `import` nie zostanie on dołączony do wynikowego `bundle`.
+![drzewo-zależności](https://camo.githubusercontent.com/875cc4cba72d9d261651bb0fefa8ff76f756087c/68747470733a2f2f7777772e657665726e6f74652e636f6d2f73686172642f7332312f73682f66353935366638332d626136382d343037352d383133342d6261633234663137333832362f33323630356338386232383238373836656463346435393239643136643539362f646565702f302f6d6f64756c65732e706e67)
+
+Niesie to za soba wiele udogodnień:
+- możemy obliczyć `diff` na grafie tj. wyciągnąć część wspólną i załadować ją do osobnego pliku - odświeżanie przeglądarki po zmianie w plikach które nie są wspólne odbywa się zdecydowanie szybciej
+- możemy zaimplementować lazy-loading na wybranych fragmentach grafu
+- od Webpacka w wersji 2 możemy skorzystać z `tree-shaking` oznacza to, że jeśli na danym module użyjemy `import` lub `require` ale nie użyjemy żadnej weksportowanej funkcji to taki moduł zostanie wyrzucony z drzewa zależności
+
+Webpack to świetne narzędzie, które w całości zastępuje task runnery. Nasza aplikacja staje się 'inteligentna' , świadoma kontentu i zależności między nimi. Jedyny minus webpacka to to że posiada duży próg wejścia. Jednak z własnego doświadczenia mogę powiedzieć, że po pewnym czasie wszystko staje się oczywiste i nie wyobrażam sobie powrotu do pisania tasków w `Gulp` lub `Grunt`.
+
 ### 3.2 Gulp vs Webpack
 ### 3.3 Opis funkcjonalności
 ### 3.4 Przykładowa konfiguracja
