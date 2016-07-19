@@ -1280,6 +1280,10 @@ Testy nie muszą zostać dołączane do builda, ponieważ są wyszukiwane po reg
 
 Przykład implementacji plików `index.js` znajduje się w przykładowej aplikacji dołączonej do styleguida.
 
+- **Pojedyńczy plik index.js powinien rejestrować całą aplikację**
+
+Uzupełniając powyższy punkt, gdzieś w głównym katalogu aplikacji powinien być plik `index.js`, który zaimportuje wszystkie zależności z `pages` i `components` i zarejestruje jest w angularowym module głównym `app`. W pliku tym powinniśmy umieśćić również logikę związaną z providerami i interceptorami .
+
 - **Konwencje nazewnicta plików**
 
 Pliki powinny być nazywane zgodnie z konwencją na powyższym obrazku tj.:
@@ -1289,13 +1293,18 @@ Pliki powinny być nazywane zgodnie z konwencją na powyższym obrazku tj.:
 3. perfix każdego pliku to nazwa komponentu
 4. w wypadku powtarzających się rozszerzeń pliku np. `*.js` powinniśmy doprecyzować co dany plik zawiera przez dodanie dodatkowego członu po kropce np. `component` , `e2e` , `route` , `spec`
 
-
-- **Struktura plików**
 - **Rozważ użycie folderu shared**
-- **Zrezygnuj a anonimowych funkcji**
+
+Folder `shared` to folder, który możemy umieścić w dowolnie innym folderze, a który gromadzi re-używalne pliki. Weźmy za przykad  stronę `admin` a w niej katalog `shared`. Folder ten może zawierać m.in dzielone serwisy, modele, interfejsy `TypeScript`, mocki itd.
+
+- **Zrezygnuj a anonimowych funkcji i zahardcodowanych nazw modułów**
+
+Korzystając z `webpacka` i `Webstorma` otrzymujemy świetną okazję na budowę apliakcji w stylu Java czy też .NET. Kilkając na daną referencję komponentu, modelu, serwisu czy też modułu możemy przejść bezpośrednio do jego definicji. Każdy plik staje się ze sobą powiązany dzięki czemu cały projekt składa się w logiczną całośc. Dlatego unikajmy zahardcodowanych nazw angularowych modułów czy też anonimowych funkcji.
+
+
+
 - **Używaj vendor.js dla bibliotek i modułów zewnętrznych**
 - **index.html powinien być tak mały jak to miżliwe**
-- **Pojedyńczy plik index.js powinien rejestrować całą aplikację**
 - **Tworzenie dyrektyw**
 - **Rozważ użycie dekoratora @Component**
 - **Unikaj restrict:'E' dla dyrektyw***
