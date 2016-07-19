@@ -1277,7 +1277,17 @@ Biorąc za przykład `person-list` i pamiętając, że każdy plik musi zostać 
 
 Testy nie muszą zostać dołączane do builda, ponieważ są wyszukiwane po regexie.
 
+Przykład implementacji plików `index.js` znajduje się w przykładowej aplikacji dołączonej do styleguida.
+
 - **Konwencje nazewnicta plików**
+
+Pliki powinny być nazywane zgodnie z konwencją na powyższym obrazku tj.:
+- stosujemy `kebab-case` zamiast `camelCase`
+- każdy folder powinien zawierać `index.js`
+- perfix każdego pliku to nazwa komponentu
+- w wypadku powtarzających się rozszerzeń pliku np. `*.js` powinniśmy doprecyzować co dany plik zawiera przez dodanie dodatkowego członu po kropce np. `component` , `e2e` , `route` , `spec`
+
+
 - **Struktura plików**
 - **Rozważ użycie folderu shared**
 - **Zrezygnuj a anonimowych funkcji**
