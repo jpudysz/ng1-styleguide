@@ -1269,11 +1269,12 @@ Plik `index.js` w roocie katalogu `components` powinien `importować` wszystkie 
 Plik `index.js` w dowolnym komponencie powinien rejestrować ten komponent w danym angularowym module i eksportować go wyżej.
 
 Biorąc za przykład `person-list` i pamiętając, że każdy plik musi zostać zaimportowany aby został dołączony do builda musimy wypracować taką strukturę imprtów/eksportów aby:
-- komponent został zarejestrowany w specjalnie stworzonym dla niego module
-- template HTML został dołączony do tego komponentu
-- style SCSS zostały dołączone do strony
-- ścieżka została zarejestrowana w ui-router
-- komponent został zarejestrowany w module wyżej odpowiedzialnym za zebranie wszystkich komponentów i rejestracje w głównym komponcnie aplikacji
+
+1. komponent został zarejestrowany w specjalnie stworzonym dla niego module
+2. template HTML został dołączony do tego komponentu
+3. style SCSS zostały dołączone do strony
+4. ścieżka została zarejestrowana w ui-router
+5. komponent został zarejestrowany w module wyżej odpowiedzialnym za zebranie wszystkich komponentów i rejestracje w głównym komponcnie aplikacji
 
 Testy nie muszą zostać dołączane do builda, ponieważ są wyszukiwane po regexie.
 
@@ -1282,10 +1283,11 @@ Przykład implementacji plików `index.js` znajduje się w przykładowej aplikac
 - **Konwencje nazewnicta plików**
 
 Pliki powinny być nazywane zgodnie z konwencją na powyższym obrazku tj.:
-- stosujemy `kebab-case` zamiast `camelCase`
-- każdy folder powinien zawierać `index.js`
-- perfix każdego pliku to nazwa komponentu
-- w wypadku powtarzających się rozszerzeń pliku np. `*.js` powinniśmy doprecyzować co dany plik zawiera przez dodanie dodatkowego członu po kropce np. `component` , `e2e` , `route` , `spec`
+
+1. stosujemy `kebab-case` zamiast `camelCase`
+2. każdy folder powinien zawierać `index.js`
+3. perfix każdego pliku to nazwa komponentu
+4. w wypadku powtarzających się rozszerzeń pliku np. `*.js` powinniśmy doprecyzować co dany plik zawiera przez dodanie dodatkowego członu po kropce np. `component` , `e2e` , `route` , `spec`
 
 
 - **Struktura plików**
