@@ -1381,6 +1381,40 @@ entry: {
 ```
 
 - **Tworzenie dyrektyw**
+
+Dyrektywy w `TypeScript` tworzymy przez `factory` (nie mylić z `factory` w `AngularJS`):
+```javascript
+export class ExampleDirective {
+   public restrict: 'A';
+   public scope: {
+      prop1: '=',
+      prop2: '<'
+   };
+   
+   public static Factory(
+   	exampleDirectiveDependency: ExampleDependency
+   ): ng.IDirective {
+       'ngInject';
+       
+       return new ExampleDirective(exampleDirectiveDependency);
+   }
+   
+   constructor(
+       private exampleDirectiveDependency: ExampleDependency
+   ) {
+      this.link = this.link.bind(this);
+   }
+   
+   public link() {
+      //link function
+   }
+```
+
+```javascript
+//rejestracja
+.directive('exampleDirective', ExampleDirective.Factory);
+```
+
 - **Unikaj restrict:'E' dla dyrektyw***
 - **Rozważ użycie dekoratora @Component**
 
