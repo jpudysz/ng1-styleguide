@@ -1439,6 +1439,9 @@ import {D} from './e';
 
 - **Performance tricks**
 
+Zachęcam do zapoznania się z trickami dotyczącymi performance AngularJS 1 przedstawionymi przez Todd Motto:
+[Angular Performance - Todd Motto](https://www.youtube.com/watch?v=LoIuokh6NUI&list=WL&index=6)
+
 # 7. Starter
 Wkrótce (w trakcie tworzenia)
 
