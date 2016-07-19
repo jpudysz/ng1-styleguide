@@ -1415,7 +1415,10 @@ export class ExampleDirective {
 .directive('exampleDirective', ExampleDirective.Factory);
 ```
 
-- **Unikaj restrict:'E' dla dyrektyw***
+- **Unikaj restrict:'E' dla dyrektyw**
+
+Zgodnie z punktem `Spójrz inaczej na dyrektywy` musimy rozróżniać dyrektywy i komponenty. Dlatego zabrionym jest aby tworzyć dyrektywy które posiadają `restrict: 'E'`. Coś co jest elementem i ma swój template HTML jest komponentem.
+
 - **Rozważ użycie dekoratora @Component**
 
 Gdy korzystamy z `TypeScript` warto rozważyć podejście przedstawione w sekcji `5.5 Decorators`. Standardową definicję komponentu, możemy zamienić na klasę i udekorować ją przez `@Component` jak w `AngularJS 2`:
