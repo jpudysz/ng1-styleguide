@@ -1240,6 +1240,13 @@ export class UserService {
 ```
 
 - **Buduj apliakcje jako drzewo komponentów**
+
+Aplikacja powinna mieć strukturę identyczną z założeniem `React` czy też `AngularJS 2`
+
+![component-tree](http://www.matrixtsl.com/wiki/images/e/e3/Eg_Tree_Structure.jpg)
+
+Główny rodzić `app-component` powinien zawierać w swoim widoku `ui-view`. Następnie `ui-router` na podswtawie dopasowanej ścieżki załaduje do niego jakiś `component`. Komponent może być liściem - nie zawierać dzieci (innych komponentów) lub być rodzicem dla innych komponentów. We wszystkich przypadkach tworzymy strukturę drzewiastą.
+
 - **index.js**
 - **Konwencje nazewnicta plików**
 - **Struktura plików**
