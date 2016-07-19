@@ -463,12 +463,6 @@ arr.map(number => number *2);
 ```
 
 ```javascript
-  Builder.build(() => {
-     console.log('Gdy nie mamy parametrów, musimy użyć {}');
-  });
-```
-
-```javascript
   const sum = arr.reduce((sum, number) => sum + number, 0)
 ```
 
