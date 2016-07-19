@@ -1260,10 +1260,22 @@ import {AboutPage} from './pages/about';
  import {AboutPage} from './pages/about/file_name';
  ```
 
-Czy jest `index.js` i co powinien w sobie zawierać?
+Czym jest `index.js` i co powinien w sobie zawierać?
 
+![catalogue-structure](https://github.com/jpudysz/ng1-styleguide/blob/master/catalogue.PNG)
 
+Plik `index.js` w roocie katalogu `components` powinien `importować` wszystkie komponenty i rejestrować je w angularowym module. Powinien również eksportować go wyżej, tak aby zaimportował go główny moduł aplikacji.
 
+Plik `index.js` w dowolnym komponencie powinien rejestrować ten komponent w danym angularowym module i eksportować go wyżej.
+
+Biorąc za przykład `person-list` i pamiętając, że każdy plik musi zostać zaimportowany aby został dołączony do builda musimy wypracować taką strukturę imprtów/eksportów aby:
+- komponent został zarejestrowany w specjalnie stworzonym dla niego module
+- template HTML został dołączony do tego komponentu
+- style SCSS zostały dołączone do strony
+- ścieżka została zarejestrowana w ui-router
+- komponent został zarejestrowany w module wyżej odpowiedzialnym za zebranie wszystkich komponentów i rejestracje w głównym komponcnie aplikacji
+
+Testy nie muszą zostać dołączane do builda, ponieważ są wyszukiwane po regexie.
 
 - **Konwencje nazewnicta plików**
 - **Struktura plików**
