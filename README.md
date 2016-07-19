@@ -1301,6 +1301,59 @@ Folder `shared` to folder, który możemy umieścić w dowolnie innym folderze, 
 
 Korzystając z `webpacka` i `Webstorma` otrzymujemy świetną okazję na budowę apliakcji w stylu Java czy też .NET. Kilkając na daną referencję komponentu, modelu, serwisu czy też modułu możemy przejść bezpośrednio do jego definicji. Każdy plik staje się ze sobą powiązany dzięki czemu cały projekt składa się w logiczną całośc. Dlatego unikajmy zahardcodowanych nazw angularowych modułów czy też anonimowych funkcji.
 
+Rejestracja modułu:
+```javascript
+//example.component.js
+class ExampleController {
+}
+
+const ExampleComponent = {
+    controller: ExampleController,
+    template: require('./example.html')
+}
+
+export default ExampleComponent;
+```
+
+```javascript
+//index.js w folderze example
+import ExampleComponent from './example.component';
+
+const exampleModule = angular
+    .module('app.components.example', [])
+    .component('exampleComponent', ExampleComponent) //nazwana funkcja (const)
+    .name; //wyeksportuj nazwę modułu = 'app.components.example'
+    
+export default exampleModule;
+```
+
+```javascript
+//index.js w roocie katalogu components
+import exampleModule from './example'; //importuje index.js
+
+const componentsModule = angular
+	.module('app.components', [
+	    exampleModule //rejestruje 'app.components.example'!
+	])
+	.name;
+
+export default componentsModule;
+```
+
+```javascript
+//główny index.js
+import componentsModule from './app/components';
+
+angular.module('app', [
+   componentsModule
+])
+.config(() => {
+   //konfiguracja aplikacji
+})
+.run(() => {
+  //konfiguracja aplikacji
+});
+```
 
 
 - **Używaj vendor.js dla bibliotek i modułów zewnętrznych**
