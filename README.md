@@ -1383,6 +1383,32 @@ entry: {
 - **Tworzenie dyrektyw**
 - **Unikaj restrict:'E' dla dyrektyw***
 - **Rozważ użycie dekoratora @Component**
+
+Gdy korzystamy z `TypeScript` warto rozważyć podejście przedstawione w sekcji `5.5 Decorators`. Standardową definicję komponentu, możemy zamienić na klasę i udekorować ją przez `@Component` jak w `AngularJS 2`:
+
+```javascript
+//standardowe podejście
+class ExampleController {
+}
+
+const ExampleComponent = {
+    controller: ExampleController,
+    template: require('./example.html')
+}
+
+export default ExampleComponent;
+```
+
+```javascript
+//TypeScript + dekorator @Component
+@Component({
+  template: require('./example.html')
+})
+class ExampleComponent {
+  //controller
+}
+```
+
 - **Pamiętaj o wyrejestrowaniu funkcji $on i $timeout**
 - **Avoid wildcard imports**
 
