@@ -1355,15 +1355,35 @@ angular.module('app', [
 });
 ```
 
-
 - **Używaj vendor.js dla bibliotek i modułów zewnętrznych**
-- **index.html powinien być tak mały jak to miżliwe**
+
+Każda bibliotek/angularowy moduł powinien zostać dołączony do aplikacji przez jeden plik `vendor.js`. Następnie plik ten nalezy umieścić  w konfiguracji `webpack` jako osobne `entry` dla aplikacji:
+
+```javascript
+//vendor.js
+require('jquery');
+
+import 'angular'
+import 'angular-translate';
+import 'angular-ui-router';
+
+require('selectize/dist/js/standalone/selectize.js)'
+```
+
+```javascript
+//webpack.config.js
+...
+entry: {
+   app: './app', //główny angularowy moduł aplikacji
+   vendor: './vendor.js' // wszystkie biblioteki
+}
+...
+```
+
 - **Tworzenie dyrektyw**
-- **Rozważ użycie dekoratora @Component**
 - **Unikaj restrict:'E' dla dyrektyw***
+- **Rozważ użycie dekoratora @Component**
 - **Pamiętaj o wyrejestrowaniu funkcji $on i $timeout**
-- **Zarządzaj interfejsami**
-- **Unikaj zahardcodowanych nazw modułów**
 - **Avoid wildcard imports**
 
 Unikaj importowania wszystkiego z modułu, dołączaj tylko to, co jest Ci potrzebne:
