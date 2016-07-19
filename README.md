@@ -1245,9 +1245,26 @@ Aplikacja powinna mieć strukturę identyczną z założeniem `React` czy też `
 
 ![component-tree](http://www.matrixtsl.com/wiki/images/e/e3/Eg_Tree_Structure.jpg)
 
-Główny rodzić `app-component` powinien zawierać w swoim widoku `ui-view`. Następnie `ui-router` na podswtawie dopasowanej ścieżki załaduje do niego jakiś `component`. Komponent może być liściem - nie zawierać dzieci (innych komponentów) lub być rodzicem dla innych komponentów. We wszystkich przypadkach tworzymy strukturę drzewiastą.
+Główny rodzić `app-component` powinien zawierać w swoim widoku `ui-view`. Następnie `ui-router` na podstawie dopasowanej ścieżki załaduje do niego jakiś `component`. Komponent może być liściem - nie zawierać dzieci (innych komponentów) lub być rodzicem dla innych komponentów. We wszystkich przypadkach tworzymy strukturę drzewiastą.
 
 - **index.js**
+
+Z punktu widzenia `node.js` i `webpack` `index.js` jest domyślnym plikiem każdego katalogu. Oznacza to, że jeśli nasz import będzie wyglądał następująco:
+
+```javascript
+import {AboutPage} from './pages/about';
+```
+ To Webpack spodziwa się pliku `index.js` w katalogu about. Jeśli chcemy przełamać tą konwencję, wystarczy że sprecyzujemy nasz `import`:
+ 
+ ```javascript
+ import {AboutPage} from './pages/about/file_name';
+ ```
+
+Czy jest `index.js` i co powinien w sobie zawierać?
+
+
+
+
 - **Konwencje nazewnicta plików**
 - **Struktura plików**
 - **Rozważ użycie folderu shared**
