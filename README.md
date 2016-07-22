@@ -1494,5 +1494,5 @@ Planuję rozwijać i updatować ten guideline do Q4 2016 kiedy oficjalnie przejd
 - [Angular Performance - Todd Motto](https://www.youtube.com/watch?v=LoIuokh6NUI&list=WL&index=6)
 - [TypeScript - official handbook](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 - [Instagram team - Webpack howto](https://github.com/petehunt/webpack-howto)
-
+- [Kurs ES6 na Egghead.io](https://egghead.io/courses/learn-es6-ecmascript-2015?utm_source=drip&utm_medium=email&utm_campaign=learn-es6)
 W razie znalezienia jakichkolwiek niejasności, literówek i (mam nadzieję że nie) błędów ortograficznych proszę o otwarcie PR. Jeżeli ktoś chciałby napisać jakiś dodatkowy rozdział/ zmienić istniejący/ napisać lepsze przykłady to bardzo do tego zachęcam i jestem otwarty na wszelkie propozycje.
