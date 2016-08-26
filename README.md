@@ -10,7 +10,7 @@ Dalej w 4 i 5 rozdziale znajduje się spis wszystkich potrzebnych wam informacji
 **Wszystko jest komponentem.** To zdanie musicie zapamiętać przez najbliższe kilka lat pisząc aplikacje frontendowe. `React`, `Polymer`, `WebComponents`, częściowo `AngularJS 1` (dyrektywy) i `AngularJS 2` - wszystkie te biblioteki/standardy/frameworki wskazują jasny rozwój i kierunek w jakim będziemy (lub już zaczeliśmy pisać) nasze aplikacje.
 
 **Czym jest komponent?**
-Komponent to nie tylko funckja ze swoją logiką i templatem HTML. Komponent to coś niepodzielnego, unitowego, zawierającego swoje zależności, często udostępniającego publiczne API (przez atrybuty w HTML), posiadającego wbudowane style, template HTML a co najważniejsze enkapsulującego wszystkie te rzeczy w jedną całość.
+Komponent to nie tylko funkcja ze swoją logiką i templatem HTML. Komponent to coś niepodzielnego, unitowego, zawierającego swoje zależności, często udostępniającego publiczne API (przez atrybuty w HTML), posiadającego wbudowane style, template HTML a co najważniejsze enkapsulującego wszystkie te rzeczy w jedną całość.
 Dyrektywy w `AngularJS` były pierwszym krokiem w stronę tworzenia komponentów. Jeżeli chcemy zobaczyć jak powinny wyglądać te prawdziwe zgodne ze standardem W3C powinniśmy spróbować stworzyć jakiś w Polymerze. Budując aplikacje z wykorzystaniem jakiegoś frameworka/biblioteki idealnymi kandydatami są `React` i `AngularJS 2`.
 
 Developerzy Googla udostępnili nam komponenty w `AngularJS 1` od wersji `1.5.0`. Musimy jednak pamiętać, że to tak na prawdę 'syntactic sugar' na dyrektywie i daleko im do tych prawdziwych.
@@ -51,12 +51,12 @@ Używając `component` pozbywamy się:
 * controllerAs (automatycznie zostaje przypisany alias `$ctrl`,  jeśli chcemy możemy go nadpisać)
 * priority
 * restrict (automatycznie `restrict: 'E'`)
-* scope (aotmatycznie zawsze izloowana)
+* scope (automatycznie zawsze izolowana)
 * terminal
 * templateNamespace
 * multiElement
 
-Template w dyrektywie dostaje automatyczny dostęp do wzystkich właściwości `controllera` za pomocą zmiennej `$ctrl`.
+Template w dyrektywie dostaje automatyczny dostęp do wszystkich właściwości `controllera` za pomocą zmiennej `$ctrl`.
 Weźmy za przykład poniższy komponent:
 ```html
 <my-component config="config"></my-component>
@@ -117,7 +117,7 @@ angular.module('app.components.statelessComponent', [])
 ### 2.4 Lifecycle hooks
 `Lifecycle hooks` to funkcje do których ma dostęp komponent i które dotyczą jego cyklu życia. Od `Angular 1.5.0` mamy dostęp do 4 funkcji, które zostaną wywołane automatycznie przez `AngularJS` w określonych sytuacjach:
 
-**`$onInit`** - zostanie wywołany gdy wszystkie `bindings` zostaną zaincjalizowane dzięki czemu będziemy mieli do nich dostęp. Funkcję tą można traktować jako `constructor` w klasie.
+**`$onInit`** - zostanie wywołany gdy wszystkie `bindings` zostaną zainicjalizowane, dzięki czemu będziemy mieli do nich dostęp. Funkcję tą można traktować jako `constructor` w klasie.
 
 ```javascript
 .component('myComponent', {
@@ -203,7 +203,7 @@ Jeśli tworzymy komunikacje pomiędzy dwoma komponentami należy pamiętać, że
 ```
 
 ### 2.5 Multi-slot transclusion
-Transclusion w kontekscie AngularJS to wstawianie HTML zawartego pomiędzy znacznikami naszej dyrektywy we wcześniej oznaczone w niej miejsce np.:
+Transclusion w kontekście AngularJS to wstawianie HTML, zawartego pomiędzy znacznikami naszej dyrektywy, we wcześniej oznaczone w niej miejsce np.:
 
 ```HTML
 <transclude-demo>
@@ -224,7 +224,7 @@ Wynik:
 ```HTML
   <div>Directive and <span>Transclude</span><div>
 ```
-Aby stworzyć `transclude` wystarczy udekorować dany node HTML przez dyrektywę `ng-transclude`. Problem polega na tym, że nie jesteśmy w stanie wybrać co chcielibyśmy transludować i z automatu jest to cały HTML zawarty pomiędzy znacznikami naszej dyrektywy. Od AngularJS 1.5.x otrzymujemy wsparcie dla tzw. multi slot transclusion. Oznacza to że możemy wstrzyknąć kod HTML w wiele miejsc naszego template:
+Aby stworzyć `transclude` wystarczy udekorować dany node HTML przez dyrektywę `ng-transclude`. Problem polega na tym, że nie jesteśmy w stanie wybrać co chcielibyśmy transcludować i z automatu jest to cały HTML zawarty pomiędzy znacznikami naszej dyrektywy. Od AngularJS 1.5.x otrzymujemy wsparcie dla tzw. multi slot transclusion. Oznacza to że możemy wstrzyknąć kod HTML w wiele miejsc naszego template:
 
 ```HTML
 <multi-transclude>
@@ -251,31 +251,31 @@ Aby stworzyć `transclude` wystarczy udekorować dany node HTML przez dyrektywę
 });
 ```
 
-Pierwszą zaminą jest to, że property `transclude` przyjmuję tym razem obiekt konfiguracyjny. Kluczem tego obiektu jest nazwa danego slotu, do którego będziemy się później odwoływać w template, natomiast wartośc to node HTML, który chcemy transcludować (może przyjąć również inną dyrektywę). Jeżeli tagi nie będą unikalne tj. pomiędzy znacznikami naszej dyrektywy znajdą się np. 2 elementy `<p>` to zostanie wybrany ten ostatni.
+Pierwszą zmianą jest to, że property `transclude` przyjmuje tym razem obiekt konfiguracyjny. Kluczem tego obiektu jest nazwa danego slotu, do którego będziemy się później odwoływać w template, natomiast wartość to node HTML, który chcemy transcludować (może przyjąć również inną dyrektywę). Jeżeli tagi nie będą unikalne tj. pomiędzy znacznikami naszej dyrektywy znajdą się np. 2 elementy `<p>` to zostanie wybrany ten ostatni.
 
-Aby oznaczyć opcjonalność slotu wystarczy oznaczyć go przez `?tagName`. Na końcu wystarczy wskazać miejsce w template gdzie chcemy wstrzyknąć translude przez dyrektywę `ng-transclude="nazwa_slotu"`.
+Aby oznaczyć opcjonalność slotu wystarczy oznaczyć go przez `?tagName`. Na końcu wystarczy wskazać miejsce w template gdzie chcemy wstrzyknąć transclude przez dyrektywę `ng-transclude="nazwa_slotu"`.
 
 
 # 3. Webpack jako module bundler
 ### 3.1 Czym jest webpack?
-Webpack to tzw. module bundler, czyli narzędzie pozwalające na analizę zależności modułów aplikacji i generowanie specjalnie przygotowanych fragmentów statycznego kodu (ang. chunks). Webpack pozwala za pomocą specjalnej konfiguracji zarządzać działaniem całej aplikacji. Gdy korzystamy z webpacka każdy plik staje się modułem, oznacza to, że jeśli jakiś plik nie został dołącząny w innym pliku przez `require` lub `import` nie zostanie on dołączony do wynikowego `bundle`. Pod spodem tworzone jest tak na prawdę drzewo zależności, które możemy wygenerować dla każdego projektu:
+Webpack to tzw. module bundler, czyli narzędzie pozwalające na analizę zależności modułów aplikacji i generowanie specjalnie przygotowanych fragmentów statycznego kodu (ang. chunks). Webpack pozwala za pomocą specjalnej konfiguracji zarządzać działaniem całej aplikacji. Gdy korzystamy z webpacka, każdy plik staje się modułem, oznacza to, że jeśli jakiś plik nie został dołączony w innym pliku przez `require` lub `import`, nie zostanie on dołączony do wynikowego `bundle`. "Pod spodem" tworzone jest tak na prawdę drzewo zależności, które możemy wygenerować dla każdego projektu:
 
 ![drzewo-zależności](https://camo.githubusercontent.com/875cc4cba72d9d261651bb0fefa8ff76f756087c/68747470733a2f2f7777772e657665726e6f74652e636f6d2f73686172642f7332312f73682f66353935366638332d626136382d343037352d383133342d6261633234663137333832362f33323630356338386232383238373836656463346435393239643136643539362f646565702f302f6d6f64756c65732e706e67)
 
-Niesie to za soba wiele udogodnień:
-- możemy obliczyć `diff` na grafie tj. wyciągnąć część wspólną i załadować ją do osobnego pliku - odświeżanie przeglądarki po zmianie w plikach które nie są wspólne odbywa się zdecydowanie szybciej
+Niesie to ze sobą wiele udogodnień:
+- możemy obliczyć `diff` na grafie tj. wyciągnąć część wspólną i załadować ją do osobnego pliku - odświeżanie przeglądarki po zmianie w plikach, które nie są wspólne, odbywa się zdecydowanie szybciej
 - możemy zaimplementować lazy-loading na wybranych fragmentach grafu
-- od Webpacka w wersji 2 możemy skorzystać z `tree-shaking` oznacza to, że jeśli na danym module użyjemy `import` lub `require` ale nie użyjemy żadnej weksportowanej funkcji to taki moduł zostanie wyrzucony z drzewa zależności
+- od Webpacka w wersji 2 możemy skorzystać z `tree-shaking`. Oznacza to, że jeśli na danym module użyjemy `import` lub `require` ale nie użyjemy żadnej weksportowanej funkcji to taki moduł zostanie wyrzucony z drzewa zależności
 
-Webpack to świetne narzędzie, które w całości zastępuje task runnery. Nasza aplikacja staje się 'inteligentna' , świadoma kontentu i zależności między nimi. Jedyny minus webpacka to to że posiada duży próg wejścia. Jednak z własnego doświadczenia mogę powiedzieć, że po pewnym czasie wszystko staje się oczywiste i nie wyobrażam sobie powrotu do pisania tasków w `Gulp` lub `Grunt`.
+Webpack to świetne narzędzie, które w całości zastępuje task runnery. Nasza aplikacja staje się 'inteligentna' , świadoma kontentu i zależności między nimi. Jedyny minus webpacka to to, że posiada duży próg wejścia. Jednak z własnego doświadczenia mogę powiedzieć, że po pewnym czasie wszystko staje się oczywiste i nie wyobrażam sobie powrotu do pisania tasków w `Gulp` lub `Grunt`.
 
 ### 3.2 Opis funkcjonalności
 Co możemy zrobić z webpackiem? Niemal wszystko! 
-Jeżeli brakuje nam jakiejś funkcjonalności wystarczy, że zainstalujemy jakiś loader lub plugin z ogólniedostępnego katalogu npm.
+Jeżeli brakuje nam jakiejś funkcjonalności wystarczy, że zainstalujemy jakiś loader lub plugin z ogólnie dostępnego katalogu npm.
 W ostateczności nic nie stoi na przeszkodzie aby napisać swój własny ;)
 
 Webpack pozwala nam m.in:
-- Pre-procesować dowolny plik za pomocą tzw. loaderów. Przykład działania loadera: dla plików z rozszerzeniem *.js z katalogu app uzyj babela tak aby outputem był ES5. Inny przykład: dla zdjęć poniżej 100kB zamień je na base64 i wstaw je bezpośrednio do pliku css.
+- Pre-procesować dowolny plik za pomocą tzw. loaderów. Przykład działania loadera: dla plików z rozszerzeniem *.js z katalogu app użyj babela tak aby outputem był ES5. Inny przykład: dla zdjęć poniżej 100kB zamień je na base64 i wstaw je bezpośrednio do pliku css.
 - Używać pluginów na całym bundlu np. minifikacja JavaScriptu, generowanie automatycznie index.html, wyciągnięcie części wspólnej i zapisanie do osobnego bundla, otwarcie przeglądarki po zbudowaniu projektu czy nawet natywne notyfikacje systemowe powiadamiające nas o błędach/sukcesie builda (i wiele wiele więcej [npm webpack-plugins](https://www.npmjs.com/search?q=webpack-plugin))
 - możliwość stworzenia `lazy-loading` z `ui-router` dla AngularJS 1 (postaram się napisać coś o tym za jakiś czas)
 - użycie `webpack-dev-server` czyli serwera pozwalającego w całości zastąpić nam `BrowserSync` 
@@ -383,7 +383,7 @@ module.exports = {
 
 # 4. ES6
 ### 4.1 Const i let
-Pisząc w ES6 powinniśmy całkowicie zrezygnować z `var`. Co więcej powinniśmy w 90% przypadków używać `const` czyli oznaczać zmienne jako niemodyfikowalne. `const` zapewnia że referencja do danej zmiennej nie zostanie zmieniona, a każda próba takiej zmiany spowoduje błąd. Jeśli nasza zmienna jest mutowalna powinniśmy użyć `let`. 
+Pisząc w ES6 powinniśmy całkowicie zrezygnować z `var`. Co więcej powinniśmy w 90% przypadków używać `const` czyli oznaczać zmienne jako niemodyfikowalne. `const` zapewnia, że referencja do danej zmiennej nie zostanie zmieniona, a każda próba takiej zmiany spowoduje błąd. Jeśli nasza zmienna jest mutowalna powinniśmy użyć `let`. 
 
 ```javascript
 let counter = 0;
@@ -396,10 +396,10 @@ const url = `${CONFIG.API}/path/${id}`;
 $http.get(url)
 ```
 
-Różnica pomiędzy `const`, `let` oraz `var` jest taka, że `const` i `let` są `block-scoped`, a `var` jest `function-scoped` oznacza to, że są widoczne tylko w obrębie najbliższego bloku and nie funkcji. Co więcej w przypadku `let` i `const` nie działą hoisting czyli nie możemy użyć zmiennej przed jej deklaracją.
+Różnica pomiędzy `const`, `let` oraz `var` jest taka, że `const` i `let` są `block-scoped`, a `var` jest `function-scoped` oznacza to, że są widoczne tylko w obrębie najbliższego bloku a nie funkcji. Co więcej w przypadku `let` i `const` nie działa hoisting, czyli nie możemy użyć zmiennej przed jej deklaracją.
 
 ### 4.2 Method shorthand
-Korzystając z ES6 możemy pominąć słowo kluczowege `function` w deklaracjach obiektów czy też samych klasach:
+Korzystając z ES6 możemy pominąć słowo kluczowe `function` w deklaracjach obiektów czy też samych klasach:
 ```javascript
 class Person {
    addValues(num1, num2) {
@@ -422,9 +422,9 @@ const config = {
 ```
 
 ### 4.3 Property value shorthand
-Jest to jeden z moich ulubionych 'ficzerów' ES6, pozwala nam pominąć powtarzający się kod. Skoczmy odrazu do praktycznego przykładu:
+Jest to jeden z moich ulubionych 'ficzerów' ES6, pozwala nam pominąć powtarzający się kod. Skoczmy od razu do praktycznego przykładu:
 ```javascript
-  .sevice('AuthService', function($http) {
+  .service('AuthService', function($http) {
       const service = {
          login: login,
          logout: logout,
@@ -449,7 +449,7 @@ const service = {
 
 ### 4.4 Arrow function
 
-Arrow function jest to skrócona wersja zapisu anonimowej funkcji, często upraszcza nasz kod w takim stopniu, że możemy zapisać jej logikę w jednej linjce kodu. Przy korzystaniu z arrow function należy pamiętać że `this` będzie wskazywał na kontekst w którym funkcja została wywołana. `call` , `apply` i `bind` nie mogą zmienić `this` w arrow function, ponieważ arrow function nie tworzy własnego this. Jeśli potrzebujemy zmienić `this` musimy skorzystać ze zwykłej funkcji.
+Arrow function jest to skrócona wersja zapisu anonimowej funkcji, często upraszcza nasz kod w takim stopniu, że możemy zapisać jej logikę w jednej linijce kodu. Przy korzystaniu z arrow function należy pamiętać że `this` będzie wskazywał na kontekst w którym funkcja została wywołana. `call` , `apply` i `bind` nie mogą zmienić `this` w arrow function, ponieważ arrow function nie tworzy własnego this. Jeśli potrzebujemy zmienić `this` musimy skorzystać ze zwykłej funkcji.
 
 Przykłady:
 ```javascript
@@ -507,7 +507,7 @@ console.log([1,2,3]); //[1,2,3]
 console.log(...[1,2,3]) //"rozpakowanie" => 1 2 3
 ```
 
-`Spread` operator znajduje również zastosowaie w kopiowaniu tablic:
+`Spread` operator znajduje również zastosowanie w kopiowaniu tablic:
 ```javascript
 const items = [1,2,3,3,4,5,6,7];
 // klasyczne podejście: pętla for z .push() lub .slice()
@@ -533,7 +533,7 @@ function doSomething(param1 = 1, param2 = 'default value') {
 ```
 
 ### 4.7 String interpolation
-String interpolation to świetne udogodnienie pozwalające nam pisać m.in multiline stringi lub zrezygnować z concatenacji stringów aby dołączyć do nich jakieś zmienne.
+String interpolation to świetne udogodnienie pozwalające nam pisać m.in multiline stringi lub zrezygnować z konkatenacji stringów aby dołączyć do nich jakieś zmienne.
 
 ```javascript
 //ES5
@@ -557,7 +557,7 @@ const template = `
 Aby użyć interpolacji należy użyć backtick (klawisz koło "1" na klawiaturze) i opcjonalnie ${} aby użyć zmiennej.
 
 ### 4.8 Destructuring
-Destructuring to kolejny feature pozwalający usunąć powtarzający się kod. Przykład prezentuje skrót, dzięki któremu możemy stwrorzyć zmienne o tych samych nazwach jak te, które posiada obiekt:
+Destructuring to kolejny feature pozwalający usunąć powtarzający się kod. Przykład prezentuje skrót, dzięki któremu możemy stworzyć zmienne o tych samych nazwach jak nazwy atrybutów, które posiada obiekt:
 
 ```javascript
 //ES5
@@ -704,7 +704,7 @@ Jeśli dana klasa dziedziczy po innej, musimy wywołać w konstruktorze konstruk
 
 # 5. TypeScript
 ### 5.1 Silne typowanie
-Używając TypeScript możemy uniknąć wielu testów sprawdzających i walidujących typy zmiennych oraz samych błędów. Jeżeli zadeklarujemy że zmienna jest typu `X` to kompilator TypeScript nie pozowoli nam zbudować projektu dopóki wszystkie referencje przypisania do tej zmiennej nie będą typu `X`.
+Używając TypeScript możemy uniknąć wielu testów sprawdzających i walidujących typy zmiennych oraz samych błędów. Jeżeli zadeklarujemy że zmienna jest typu `X` to kompilator TypeScript nie pozwoli nam zbudować projektu dopóki wszystkie referencje przypisania do tej zmiennej nie będą typu `X`.
 ```javascript
 let counter: number;
 let greeting: string;
@@ -758,7 +758,7 @@ let message2: any = 'Hello world!';
 let strLength = (<string>message).length;
 ```
 
-Posumowując za pomocą TypeScripta dostajemy mozliwość korzystania z silnego typowania w naszym kodzie JavaScript. Wyróżniamy nastepujące typy:
+Posumowując za pomocą TypeScripta dostajemy możliwość korzystania z silnego typowania w naszym kodzie JavaScript. Wyróżniamy nastepujące typy:
 * `Boolean`
 * `Number`
 * `String`
@@ -1165,10 +1165,10 @@ Sposoby komunikacji `dziecko-rodzic`:
 
 1. wywoływanie funkcji przez `bindings` i `&`
 2. `$watch` na zmiennych z `bindings` typu `=`, `<`, `@`
-3. seriws (synchronizacja modelu)
+3. serwis (synchronizacja modelu)
 4. dostęp do `controller` rodzica przez `require` i `this.parent`
 
-- **Zapomij o $scope, chyba że potrzbujesz $watch**
+- **Zapomij o $scope, chyba że potrzebujesz $watch**
 
 Jedynym sensownym wytłumaczenia korzystania ze `$scope` jest użycie `$watch`. Od AngularJS w wersji 1.5.x nasz template zostaje automatycznie zbindowany do zmiennej `$ctrl` dlatego nie musimy korzystać również z `var vm = this`. 
 
@@ -1176,7 +1176,7 @@ Jedynym sensownym wytłumaczenia korzystania ze `$scope` jest użycie `$watch`. 
 
 Korzystanie z ES6 powinno być oczywiste. Jest to standard od 2015 roku, który jest wspierany prawie w całości przez większość przeglądarek. W sekcji 4 opisałem najważniejsze zmiany w języku,a szcegółowy opis wszystkich zmian można znaleźć [tutaj](http://es6-features.org/#Constants).
 
-TypeScript to kwestia idnywidualna. Część z was może nie zgodzić się z koniecznością używania `TypeScrpipt` w projektach. Jednak z własnego doświadczenia mogę powiedzieć, że aplikacja napisana w całości w `TypeScript` staje się łatwa w utrzymaniu, odporna na literówki, dziwne błędy odkrywane poczas runtime, nie musimy pisac testów spradzających typ zmiennych i co najważniejsze otrzymujemy `Intellisense` dla naszych modeli i funkcji.
+TypeScript to kwestia indywidualna. Część z was może nie zgodzić się z koniecznością używania `TypeScript` w projektach. Jednak z własnego doświadczenia mogę powiedzieć, że aplikacja napisana w całości w `TypeScript` staje się łatwa w utrzymaniu, odporna na literówki, dziwne błędy odkrywane poczas runtime, nie musimy pisac testów sprawdzających typ zmiennych i co najważniejsze otrzymujemy `Intellisense` dla naszych modeli i funkcji.
 
 - **Unikaj two-way databinding**
 
@@ -1212,7 +1212,7 @@ class ModalComponent{
 
 - **Wszystko jest modułem**
 
-Korzystając z webpacka i ES6 wszystko staje się modułem. Dlatego nie ma potrzeby aby wrapować funkcję w `IIFE` czy też wpisywac ręcznie `"use strict"` (domyślny mode w ES6). Dodatkowo należy pamiętac że jeśli coś nie zostanie jawnie dołączone do bundla przez `require` czy też `import` to się w nim nie znajdzie.
+Korzystając z webpacka i ES6 wszystko staje się modułem. Dlatego nie ma potrzeby aby wrapować funkcję w `IIFE` czy też wpisywać ręcznie `"use strict"` (domyślny mode w ES6). Dodatkowo należy pamiętac że jeśli coś nie zostanie jawnie dołączone do bundla przez `require` czy też `import` to się w nim nie znajdzie.
 
 ```javascript
 // importowanie zależności do serwisu
@@ -1233,13 +1233,13 @@ export class UserService {
 }
 ```
 
-- **Buduj apliakcje jako drzewo komponentów**
+- **Buduj aplikację jako drzewo komponentów**
 
 Aplikacja powinna mieć strukturę identyczną z założeniem `React` czy też `AngularJS 2`
 
 ![component-tree](http://www.matrixtsl.com/wiki/images/e/e3/Eg_Tree_Structure.jpg)
 
-Główny rodzić `app-component` powinien zawierać w swoim widoku `ui-view`. Następnie `ui-router` na podstawie dopasowanej ścieżki załaduje do niego jakiś `component`. Komponent może być liściem - nie zawierać dzieci (innych komponentów) lub być rodzicem dla innych komponentów. We wszystkich przypadkach tworzymy strukturę drzewiastą.
+Główny rodzic `app-component` powinien zawierać w swoim widoku `ui-view`. Następnie `ui-router` na podstawie dopasowanej ścieżki załaduje do niego jakiś `component`. Komponent może być liściem - nie zawierać dzieci (innych komponentów) lub być rodzicem dla innych komponentów. We wszystkich przypadkach tworzymy strukturę drzewiastą.
 
 - **index.js**
 
@@ -1268,7 +1268,7 @@ Biorąc za przykład `person-list` i pamiętając, że każdy plik musi zostać 
 2. template HTML został dołączony do tego komponentu
 3. style SCSS zostały dołączone do strony
 4. ścieżka została zarejestrowana w ui-router
-5. komponent został zarejestrowany w module wyżej odpowiedzialnym za zebranie wszystkich komponentów i rejestracje w głównym komponcnie aplikacji
+5. komponent został zarejestrowany w module wyżej odpowiedzialnym za zebranie wszystkich komponentów i rejestracje w głównym komponencie aplikacji
 
 Testy nie muszą zostać dołączane do builda, ponieważ są wyszukiwane po regexie.
 
@@ -1278,13 +1278,13 @@ Przykład implementacji plików `index.js` znajduje się w przykładowej aplikac
 
 Uzupełniając powyższy punkt, gdzieś w głównym katalogu aplikacji powinien być plik `index.js`, który zaimportuje wszystkie zależności z `pages` i `components` i zarejestruje jest w angularowym module głównym `app`. W pliku tym powinniśmy umieśćić również logikę związaną z providerami i interceptorami .
 
-- **Konwencje nazewnicta plików**
+- **Konwencje nazewnictwa plików**
 
 Pliki powinny być nazywane zgodnie z konwencją na powyższym obrazku tj.:
 
 1. stosujemy `kebab-case` zamiast `camelCase`
 2. każdy folder powinien zawierać `index.js`
-3. perfix każdego pliku to nazwa komponentu
+3. prefix każdego pliku to nazwa komponentu
 4. w wypadku powtarzających się rozszerzeń pliku np. `*.js` powinniśmy doprecyzować co dany plik zawiera przez dodanie dodatkowego członu po kropce np. `component` , `e2e` , `route` , `spec`
 
 - **Rozważ użycie folderu shared**
@@ -1351,7 +1351,7 @@ angular.module('app', [
 
 - **Używaj vendor.js dla bibliotek i modułów zewnętrznych**
 
-Każda bibliotek/angularowy moduł powinien zostać dołączony do aplikacji przez jeden plik `vendor.js`. Następnie plik ten nalezy umieścić  w konfiguracji `webpack` jako osobne `entry` dla aplikacji:
+Każda biblioteka/angularowy moduł powinien zostać dołączony do aplikacji przez jeden plik `vendor.js`. Następnie plik ten nalezy umieścić  w konfiguracji `webpack` jako osobne `entry` dla aplikacji:
 
 ```javascript
 //vendor.js
